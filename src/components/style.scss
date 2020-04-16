@@ -1,0 +1,35 @@
+.center{
+    //justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.tmpHeight{
+    height: 200px;
+}
+
+.intro{
+
+}
+
+.map{
+    height:50vh;
+
+    .map-display{
+        margin:auto;
+        min-height: 100%;
+        max-width: 60%;
+    }
+}
+
+.black{
+    background-color: #333;
+}
+.pink{
+    background-color: #fea49f;
+  }
+.sand{
+    background-color: #c89666;
+  }
+.night-blue{
+    background-color: #2d545e;
+ }
