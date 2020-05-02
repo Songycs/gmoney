@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
-import {Route, Switch} from 'react-router-dom';
 import {Container, } from 'react-bootstrap';
 
-import {Intro, Map, Category, Franchise, Footer} from 'components'
+import {
+  Top, 
+  Contents, 
+  Bottom
+} from '../../components'
 
 class Home extends Component {
   render() {
-    return (
-    
-        <Container fluid>
-          <Intro/>
-          <Map/>
-          <Category/>
-          <Franchise/>
-          <Footer/>
+    return (    
+        <Container fluid className='App'>
+          <Top/>
+          <Contents/>          
+          <Bottom/>
         </Container>
-
     );
   }
 }

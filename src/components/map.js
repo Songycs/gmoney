@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-// import 'components/style.scss';
-// import 'style.scss';
 
 const { kakao } = window;
 
@@ -10,7 +8,7 @@ class Map extends Component {
         super(props);
         this.state = {
         }
-    }
+    }    
 
     componentDidMount() {
         const script = document.createElement('script');
@@ -20,8 +18,6 @@ class Map extends Component {
 
         script.onload = () => {
             kakao.maps.load(() => {
-                
-
                 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
                 mapOption = { 
                     center:new kakao.maps.LatLng(37.56812473178144 , 126.9218518787957), // 지도의 중심좌표
@@ -126,10 +122,10 @@ class Map extends Component {
     
     render() {
         return(
-            <Container fluid className="">
+            <Container fluid className="map-container">
                 <Row className='map'>
-                    <div className ='map-display' id="map" >
-            
+                    <div className ='map-display' id='map'>
+                        MapMap
                     </div>
                 </Row>
             </Container>        

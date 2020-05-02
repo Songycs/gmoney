@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="15" height="14" viewBox="0 0 15 14">
+    <defs>
+        <linearGradient id="prefix__a" x1="129.013%" x2="19.744%" y1="108.998%" y2="18%">
+            <stop offset="0%" stop-color="#00D597"/>
+            <stop offset="100%" stop-color="#B7FFEA"/>
+            <stop offset="100%" stop-color="#B7FFEA"/>
+        </linearGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <path d="M0 0H15V15H0z" transform="translate(0 -1)"/>
+        <path fill="url(#prefix__a)" d="M0 3.589v11.015c0 .219.174.396.39.396H5v-3.454C5 10.14 6.12 9 7.5 9c1.381 0 2.5 1.14 2.5 2.546V15h4.611c.215 0 .389-.177.389-.396V3.59c0-.325-.258-.589-.578-.589H.579C.258 3 0 3.264 0 3.59" transform="translate(0 -1)"/>
+        <path fill="#00D597" d="M1.426 1c-.319 0-.578.277-.578.618L0 3.991v1.891C0 6.967.76 7.94 1.774 7.997c1.082.06 1.976-.859 1.976-2.002C3.75 7.103 4.59 8 5.625 8 6.661 8 7.5 7.103 7.5 5.995 7.5 7.103 8.34 8 9.375 8c1.036 0 1.875-.897 1.875-2.005 0 1.143.895 2.063 1.976 2.002C14.24 7.94 15 6.967 15 5.882V3.991l-.848-2.373c0-.341-.259-.618-.578-.618H1.426z" transform="translate(0 -1)"/>
+    </g>
+</svg>
