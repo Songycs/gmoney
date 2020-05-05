@@ -1,16 +1,39 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-
+import axios from 'axios';
 const { kakao } = window;
 
 class Map extends Component {
     constructor(props){
         super(props);
         this.state = {
+        locations:[],
         }
-    }    
+        this._getFranchises = this._getFranchises.bind(this)
+    }
+
+    //call this as this._getFranchises('치킨','한식','파주');
+    //limit 100
+    //call _getFranchises('','','region') for initial page load/'This location'
+    //call _getFranchises('','category','region'); for category
+    //call _getFranchises('search_word','',''region); for search ;
+    //call _getFranchises('','','') for whole franchises -> time out occured
+    _getFranchises= async (search_word,category,region)=>{
+        await axios
+        .get(`https://283e27mdvd.execute-api.ap-northeast-2.amazonaws.com/0505/search?search_word=${search_word}&region=${region}&category=${category}`)
+        .then(function(response) {
+            //json string to json object
+            let result = JSON.parse(response.data.body).body;
+            console.log(result);
+            //return or setState depending on functions, plz check console.log
+        })
+        .catch(function(error) {
+          console.log('What happened? ' + error.response);
+        });
+    }        
 
     componentDidMount() {
+        this._getFranchises('초밥','','');
         const script = document.createElement('script');
         script.async = true;
         script.src = "https://dapi.kakao.com/v2/maps/sdk.js?appkey=da95929a40edbaa821402e4ba92c944d&autoload=false";
