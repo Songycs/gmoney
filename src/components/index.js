@@ -1,10 +1,12 @@
 
-import Top from './top';
-import Contents from './contents';
-import Bottom from './bottom';
-import Map from './map'
-import Category from './category'
+import AppBar from './AppBar/AppBar'
+import AppBarItem from './AppBar/AppBarItem'
+import Contents from './Contents/Contents';
+import Bottom from './Bottom/Bottom';
+import Map from './Map/Map'
+import Category from './Category/Category'
 import Search from './search'
 import MerchantList from './merchantList'
+import CategoryItem from './Category/CategoryItem'
 
-export{Bottom, Top, Contents, Map,Search,Category,MerchantList}
+export{Bottom,Contents, Map,Search,Category,MerchantList,AppBar,AppBarItem,CategoryItem}

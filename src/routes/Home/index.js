@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
 import {Container, } from 'react-bootstrap';
+import isMobile from '../../utils/isMobile'
 
-import {
-  Top, 
+import {  
+  AppBar, 
   Contents, 
   Bottom
 } from '../../components'
 
-class Home extends Component {
+class Home extends Component {  
+  constructor(props){
+    super(props)
+  } 
   render() {
-    return (    
-        <Container fluid className='App'>
-          <Top/>
-          <Contents/>          
-          <Bottom/>
+    let mobileFlag=isMobile.Android() || isMobile.iOS();
+    return (
+        <Container fluid className={`${mobileFlag? 'App-mobile': 'App'}`} >
+          <AppBar mobileFlag={mobileFlag}/>
+          <Contents mobileFlag={mobileFlag}/>          
+          <Bottom mobileFlag={mobileFlag}/>
         </Container>
     );
   }

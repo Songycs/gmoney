@@ -1,0 +1,31 @@
+.appbar{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.appbar-container{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    height:100px;
+}
+.appbar-container-mobile{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    height:60px;
+}
+.appbar-item-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.row-reverse{
+    flex-direction: row-reverse;
+}
+
+.logo{
+    flex-grow: 1;
+}

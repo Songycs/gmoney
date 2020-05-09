@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import {Map,Search} from 'components'
+import {Map,Category} from 'components'
+import './Contents.scss'
 
 class Contents extends Component {
     constructor(props){
@@ -14,11 +15,12 @@ class Contents extends Component {
     }//componentDidMount
 
     render() {
+        const {mobileFlag} = this.props;
         return(
             <Container fluid>
-                <Row className="contents">
+                <Row className={`contents${mobileFlag ? '-mobile' : ''}`}>
                     <Map></Map>
-                    <Search></Search>                 
+                    <Category mobileFlag={this.mobileFlag}></Category>
                 </Row>
             </Container>        
         )
