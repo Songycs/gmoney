@@ -20,7 +20,7 @@ class Contents extends Component {
             <Container fluid>
                 <Row className={`contents${mobileFlag ? '-mobile' : ''}`}>
                     <Map></Map>
-                    <Category mobileFlag={this.mobileFlag}></Category>
+                    {/* <Category mobileFlag={this.mobileFlag}></Category> */}
                 </Row>
             </Container>        
         )
