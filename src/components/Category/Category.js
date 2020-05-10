@@ -35,8 +35,7 @@ class Category extends Component {
 
     render() {
         var itemList=this.category_list.map((item)=>{return <CategoryItem item={item}/>});
-        const {mobileFlag} = this.props;
-        console.log(mobileFlag);
+        const {mobileFlag} = this.props;        
         return(
             <Container fluid>
                 <CategoryItem item={TITLE_ITEM}/>

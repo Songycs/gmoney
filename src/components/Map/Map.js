@@ -34,7 +34,7 @@ class Map extends Component {
         });
     }        
 
-    componentDidMount() {
+    componentDidMount() {        
         this._getFranchises('초밥','','');
         const script = document.createElement('script');
         script.async = true;
@@ -50,7 +50,7 @@ class Map extends Component {
                 }; 
                 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-                
+                               
                 
                 //  max,min level set alloewed
                 map.setMaxLevel(10);
@@ -102,6 +102,7 @@ class Map extends Component {
                 }
                 function CurrentLocation()
                 {
+                    
                     var locPosition = new kakao.maps.LatLng(37.56812473178144, 126.9218518787957); //default or fail
                     if (navigator.geolocation) {
                         //success
@@ -145,11 +146,11 @@ class Map extends Component {
         const {mobileFlag} = this.props;
         return(
             <Container fluid className={`map-container${mobileFlag ? '-mobile' : ''}`}>
-                <Row className='map'>                    
+                <Row className={`map${mobileFlag ? '-mobile' : ''}`}>                    
                     <div className ='map-display' id='map'>
                         MapMap
                     </div>
-                    <MapButtons />
+                    <MapButtons mobileFlag={mobileFlag}/>
                 </Row>
             </Container>        
     )
