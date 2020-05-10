@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import {MapButtons} from 'components'
 import axios from 'axios';
+import './Map.scss'
 const { kakao } = window;
-
 class Map extends Component {
     constructor(props){
         super(props);
@@ -28,6 +29,7 @@ class Map extends Component {
             //return or setState depending on functions, plz check console.log
         })
         .catch(function(error) {
+
           console.log('What happened? ' + error.response);
         });
     }        
@@ -47,15 +49,11 @@ class Map extends Component {
                     level: 3 // map level
                 }; 
                 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+                
                 
                 //  max,min level set alloewed
                 map.setMaxLevel(10);
-
-                // zoom control
-                var mapTypeControl = new kakao.maps.MapTypeControl();
-                map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-                var zoomControl = new kakao.maps.ZoomControl();
-                map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
                 //check current location
                 CurrentLocation();
@@ -144,12 +142,14 @@ class Map extends Component {
 
     
     render() {
+        const {mobileFlag} = this.props;
         return(
-            <Container fluid className="map-container">
-                <Row className='map'>
+            <Container fluid className={`map-container${mobileFlag ? '-mobile' : ''}`}>
+                <Row className='map'>                    
                     <div className ='map-display' id='map'>
                         MapMap
                     </div>
+                    <MapButtons />
                 </Row>
             </Container>        
     )

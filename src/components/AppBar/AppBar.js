@@ -20,12 +20,12 @@ class AppBar extends Component {
                         mobileFlag
                             ?
                             <div className='appbar'>                                
-                                <AppBarItem item={LOGO_BUTTON}/>
+                                <AppBarItem item={LOGO_BUTTON} classExtForImg={'logo-mobile'}/>
                                 <AppBarItem item={CURRENCY_BUTTON} classExtForTitle={'ref-currency'} classExtForText={'ref-currency-text'}/>
                             </div>
                             :
                             <div className='appbar'>
-                                <AppBarItem item={LOGO_BUTTON}/>
+                                <AppBarItem item={LOGO_BUTTON} classExtForImg={'logo'}/>
                                 <AppBarItem item={EDITOR_BUTTON} classExt={'row-reverse'} classExtForTitle={'editor-link'}/>                                                          
                             </div>
                     }

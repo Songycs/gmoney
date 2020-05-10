@@ -29,7 +29,7 @@ class CategoryItem extends React.Component {
         case 4:
             return(
                 <div onClick={item.disable ? null : this.props.onClick} className={`category-result-container ${classExt}`}>
-                    <img src={item.iconSrc} className={`category-title-icon ${classExtForImg}`} alt="icon" />
+                    
                 </div>
             )        
         default:

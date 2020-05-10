@@ -1,6 +1,25 @@
 .category-container{
-    width: 586px;
-    height: 314px;
+    width: 564px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;    
+    align-content: flex-start;
+    background-color: #fbfbfb;
+    padding:14px;
+    .body{
+        display: flex;
+        flex-direction: column;        
+        justify-content: center;
+        padding: 12px;
+        .row{
+            margin:1px;
+            display:flex;            
+            flex-direction: row;
+            justify-content: flex-start;            
+        }
+    }
+}
+.category-container-mobile{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;    

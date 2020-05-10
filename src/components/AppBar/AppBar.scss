@@ -15,6 +15,8 @@
     flex-flow: column;
     justify-content: center;
     height:60px;
+    margin-left: 19px;
+    margin-right:22px;
 }
 .appbar-item-container{
     display: flex;
@@ -26,6 +28,12 @@
     flex-direction: row-reverse;
 }
 
-.logo{
-    flex-grow: 1;
+.logo{    
+    width: 162px;
+
+}
+
+.logo-mobile{    
+    width: 107px;
+    
 }

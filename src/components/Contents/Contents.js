@@ -16,11 +16,12 @@ class Contents extends Component {
 
     render() {
         const {mobileFlag} = this.props;
+        console.log(mobileFlag)
         return(
             <Container fluid>
                 <Row className={`contents${mobileFlag ? '-mobile' : ''}`}>
-                    <Map></Map>
-                    <Category mobileFlag={this.mobileFlag}></Category>
+                    <Map mobileFlag={mobileFlag}/>
+                    <Category mobileFlag={mobileFlag}/>
                 </Row>
             </Container>        
         )
