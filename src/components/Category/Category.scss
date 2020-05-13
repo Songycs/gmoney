@@ -1,6 +1,42 @@
-.category-container{
-    width: 586px;
-    height: 314px;
+.category-wrapper{    
+    display: flex;
+    flex-direction: column;       
+    width: 588px;     
+    height:830px;
+}
+
+.category-container-mobile{
+    display: flex;
+    flex-direction: column;
+}
+
+.category-button-wrapper{
+    display: flex;
+    flex-direction: column;
+    min-height: 414px;
+}
+
+.category-button-container{    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;    
+    align-content: flex-start;
+    background-color: #fbfbfb;
+    padding:14px;
+    .body{
+        display: flex;
+        flex-direction: column;        
+        justify-content: center;
+        padding: 12px;
+        .row{
+            margin:1px;
+            display:flex;            
+            flex-direction: row;
+            justify-content: flex-start;            
+        }
+    }
+}
+.category-button-container-mobile{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;    
@@ -42,7 +78,7 @@
     padding-left: 8px;
 }
 
-.category-item-container{
+.category-button{
     display: flex;
     width: 110px;
     height: 70px;
@@ -58,8 +94,32 @@
     font-style: normal;
     line-height: normal;
     letter-spacing: normal;
-    text-align: center;
-    color: #333333;
+    text-align: center;    
+}
+
+
+.category-result-container-init{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    padding-top: 24px;    
+    .init-text{
+        align-self: flex-start;
+        font-family: NanumGothic;
+        font-size: 20px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.4;
+        letter-spacing: normal;
+        color: #5b5b5b;    
+    }
+    .init-img{
+        width: 464px;
+        padding-top: 10px;
+        align-self: flex-end;
+    }
 }
 
 .category-fold-container{
@@ -68,4 +128,90 @@
     background-blend-mode: multiply;
     background-image: linear-gradient(to bottom, #f5f5f5, #f5f5f5);
     padding:14px;
+}
+
+.search-result-container{ 
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;   
+    overflow: scroll;
+    overflow-x: hidden;
+    direction: rtl;    
+}
+.search-result-container::-webkit-scrollbar{
+    width:2px;    
+}
+.search-result-container::-webkit-scrollbar-thumb{
+    background-color: #00d597;
+}
+
+.search-result-container::-webkit-scrollbar-track{
+    background-color: #eee;
+}
+
+.category-result-container{    
+    display:flex;
+    flex-direction: row;    
+    min-height: 117px;    
+    
+    direction: ltr;
+    .contents-wrapper{        
+        margin:18px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;        
+    }
+    .img-btn{
+        margin-top:18px;
+        align-self: flex-start;
+        margin-left: 14px;
+    }
+    .first-row{
+        display: flex;
+        align-items: center;
+        margin-bottom:4px;
+        .title{
+            font-family: NanumGothic;
+            font-size: 20px;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: -0.71px;
+            color: #333333;
+        }
+    
+        .spliter{
+            width: 1px;
+            height: 14px;
+            margin-left:12px;        
+            background-color: #efefef;
+        }
+    
+        .distance{
+            margin-left:12px;
+            font-family: NanumGothic;
+            font-size: 16px;
+            font-weight: normal;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: normal;
+            letter-spacing: -0.57px;
+            color: #333333;
+        }
+    }    
+
+    .info{
+        margin-top:4px;
+        margin-bottom:4px;
+        font-family: NanumGothic;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: -0.57px;
+        color: #666666;
+    }
+
 }

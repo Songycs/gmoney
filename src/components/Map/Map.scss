@@ -1,0 +1,148 @@
+.map-container{    
+    flex-grow: 1;    
+    padding-right:18px;    
+}
+
+.map-container-mobile{
+    flex-grow: 1;  
+    flex-basis: 400px;
+}
+
+.map{
+    height: 830px;
+    position: relative;
+    overflow: hidden;
+    .map-display{
+        margin: auto;
+        min-width: 100%;
+        min-height: 100%;
+    }
+}
+
+.map-mobile{
+    height:400px;
+    position: relative;
+    overflow: hidden;
+    .map-display{
+        margin: auto;
+        min-width: 100%;
+        min-height: 100%;
+    }
+}
+
+.map-button-container{    
+    background-color: #ececec;    
+    position: absolute;
+    display: flex;
+    top:0px;
+    left:0px;
+    overflow: hidden;
+    width: 100%;
+    height:50px;
+    margin:0;
+    padding:1px;
+    z-index: 1;
+}
+
+.map-button-container-mobile{    
+    background-color: #ececec;    
+    position: absolute;
+    display: flex;
+    top:0px;
+    left:0px;
+    right:15px;
+    overflow: hidden;
+    width: 100%;
+    height:50px;
+    margin:15px;
+    padding:1px;
+    z-index: 1;
+}
+
+.map-item-container{    
+    background-color:white;
+    display: flex;    
+    overflow: hidden;
+    margin:1px;
+    padding:14px;
+    align-items: center;    
+}
+
+.map-item-container-mobile{    
+    background-color:white;
+    display: flex;    
+    overflow: hidden;
+    margin:1px;
+    padding:14px;
+    align-items: center;    
+}
+
+.map-item-title{
+    flex: 1 66px;    
+    margin-left: 8px;    
+    font-family: NanumGothic;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;    
+    color: #333333;
+}
+
+.map-item-title-mobile{
+    flex: 1 66px;
+}
+
+.local-btn{
+    flex-basis: 5.5vw;
+}
+
+.set-cur-loc-btn{
+    flex-basis: 6.9vw;
+    box-shadow: 0 0 12px 0 rgba(231, 231, 231, 0.5);
+    background-color: #00cf93;
+}
+
+.cur-loc{
+    flex-basis: 20vw;
+}
+
+.currency-btn{    
+    flex-basis: 10.9vw;
+}
+
+.white{
+    color:white;
+}
+
+.green{
+    color:#00cf93;
+}
+
+.map-item-text{
+    margin-left: 8px; 
+    font-family: NanumGothic;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #333333;
+}
+
+.map-item-text-mobile{
+    font-family: NanumGothic;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #999999;
+}
+
+.serach-edit-text{
+    flex-grow: 1;
+}

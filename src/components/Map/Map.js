@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import {MapButtons,isMobile} from 'components'
+import { observer, inject } from 'mobx-react';
+
 import axios from 'axios';
+import './Map.scss'
 const { kakao } = window;
 
 const franchiseAPI = "https://283e27mdvd.execute-api.ap-northeast-2.amazonaws.com/0505/search?search_word=" 
-
+@inject(store => ({
+    mapObject: store.map.mapObjet,
+  }))
+@observer
 class Map extends Component {
     constructor(props){
         super(props);
@@ -13,11 +20,11 @@ class Map extends Component {
         franchises:[],
         center:null,
         geocoder:null,
-        map : null
+        map : null,
+        testmap : this.props.mapObject
         }
         this._getFranchises = this._getFranchises.bind(this);
         this.CurrentLocation = this.CurrentLocation.bind(this);
-
     }
 
     //call this as this._getFranchises('치킨','한식','파주');
@@ -43,12 +50,12 @@ class Map extends Component {
         // });
     }       
     FirstLoad = async () => {
-            var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-            await this.CreateMap();
-            await this._getFranchises('초밥','','파주')
-            console.log(this.state.franchises);
-            this.SetMarkers(this.state.franchises,imageSrc);
-            this.GetDistances(37.54930614086602, 126.91356528952767);
+           // var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+            //await this.CreateMap();
+            //await this._getFranchises('초밥','','파주')
+            console.log(this.state.testmap);
+            //this.SetMarkers(this.state.franchises,imageSrc);
+            //this.GetDistances(37.54930614086602, 126.91356528952767);
 
     } 
         
@@ -167,12 +174,14 @@ class Map extends Component {
 
     
     render() {
+        let mobileFlag=isMobile.Android() || isMobile.iOS();
         return(
-            <Container fluid className="map-container">
-                <Row className='map'>
+            <Container fluid className={`map-container${mobileFlag ? '-mobile' : ''}`}>
+                <Row className={`map${mobileFlag ? '-mobile' : ''}`}>                    
                     <div className ='map-display' id='map'>
                         MapMap
                     </div>
+                    <MapButtons mobileFlag={mobileFlag}/>
                 </Row>
             </Container>        
     )

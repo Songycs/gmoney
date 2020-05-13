@@ -1,14 +1,10 @@
-
-.contents{
-    padding: 12px;
+.contents{    
     display: flex;
     flex-direction: row;
-    align-items: stretch;   
+    justify-content: stretch;
 }
 
-.contents-mobile{
-    padding: 12px;
+.contents-mobile{    
     display: flex;
-    flex-direction: column;
-    align-items: stretch;   
+    flex-direction: column;    
 }
