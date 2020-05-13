@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import {MapButtons} from 'components'
+import {MapButtons,isMobile} from 'components'
 import axios from 'axios';
 import './Map.scss'
 const { kakao } = window;
@@ -143,7 +143,7 @@ class Map extends Component {
 
     
     render() {
-        const {mobileFlag} = this.props;
+        let mobileFlag=isMobile.Android() || isMobile.iOS();
         return(
             <Container fluid className={`map-container${mobileFlag ? '-mobile' : ''}`}>
                 <Row className={`map${mobileFlag ? '-mobile' : ''}`}>                    

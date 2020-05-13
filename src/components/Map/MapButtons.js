@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import {MapItem} from 'components'
+import {MapItem,isMobile} from 'components'
 import './Map.scss'
 
 const LOCAL_BUTTON={iconSrc:'./images/combined-shape.svg', title:'지역설정'}
@@ -19,7 +19,7 @@ class MapButtons extends Component {
     }//componentDidMount
 
     render() {
-        const {mobileFlag} = this.props;
+        let mobileFlag=isMobile.Android() || isMobile.iOS();
         var CUR_LOCATION_BUTTON={iconSrc:'./images/locating.svg', title:'현재위치' , text:'경기도 용인시 처인구 중부대로 1199'}
         var SEARCH_LOCATION_EDIT={type:'EditText',text:'검색어를 입력해주세요'}
         var CURRENCY_BUTTON={iconSrc:'./images/base-money.svg',title:'기준화폐', text:'경기지역화폐'}        

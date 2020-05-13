@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import AppBarItem from './AppBarItem'
 import './AppBar.scss'
+import {isMobile} from '../../components'
 
 const CURRENCY_BUTTON = { title: "기준화폐" , iconSrc: './images/base-money.svg' , text: "경기지역"};
 const LOGO_BUTTON = { title: "", iconSrc: './images/logo.svg'};
@@ -12,7 +13,7 @@ class AppBar extends Component {
         super(props);        
     }
     render() {        
-        const {mobileFlag} = this.props;
+        let mobileFlag=isMobile.Android() || isMobile.iOS();
         return(            
             <Container fluid>
                 <Row className={`appbar-container${mobileFlag ? '-mobile' : ''}`}>

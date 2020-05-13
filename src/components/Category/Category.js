@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import {CategoryItem,SearchResult} from 'components'
+import {CategoryItem,isMobile} from 'components'
 import './Category.scss'
 import data from './Data.json'
 
 const TITLE_ITEM = { type:1, title: "업장 카테고리" , iconSrc: './images/shop.svg'};
 const FOLD_ITEM = {type:3, iconSrc:'./images/keyboard_arrow_up-24px.svg'}
+const INIT_RESULT_ITEM = {type:4, isInit:true}
 
 class Category extends Component {
     constructor(props){
@@ -14,10 +15,12 @@ class Category extends Component {
         };
         this.category_list=data["category_main"];
         this.select_id=[];
+        this.search_list=[];
+        this.test_list=data["search_list_for_test"];
     }
 
     componentDidMount(){
-        var categoryContainer = document.getElementById('category');
+        var categoryContainer = document.getElementById('category');        
     }
 
     getSubCategoryById=(id)=>{
@@ -35,16 +38,23 @@ class Category extends Component {
 
     render() {
         var itemList=this.category_list.map((item)=>{return <CategoryItem item={item}/>});
-        const {mobileFlag} = this.props;        
+        var searchList=this.search_list.length==0?<CategoryItem item={INIT_RESULT_ITEM}/>:this.search_list.map();        
+        var testList=this.test_list.length==0?<CategoryItem item={INIT_RESULT_ITEM}/>:this.test_list.map((item)=>{return <CategoryItem item={item}/>});
+        console.log(testList);
+        let mobileFlag=isMobile.Android() || isMobile.iOS();     
         return(
-            <Container fluid>
-                <CategoryItem item={TITLE_ITEM}/>
-                <Row className={`category-container${mobileFlag ? '-mobile' : ''}`}>                    
-                    {itemList}
+            <Container fluid className={`category-wrapper${mobileFlag ? '-mobile' : ''}`}>
+                <Row className={`category-button-wrapper${mobileFlag ? '-mobile' : ''}`}>
+                    <CategoryItem item={TITLE_ITEM}/>
+                    <Row className={`category-button-container${mobileFlag ? '-mobile' : ''}`}>                    
+                        {itemList}
+                    </Row>
+                    <CategoryItem item={FOLD_ITEM}/>
                 </Row>
-                <CategoryItem item={FOLD_ITEM}/>
-                <SearchResult/>
-            </Container>        
+                <Row className={`search-result-container${mobileFlag ? '-mobile' : ''}`}>
+                    {testList}                    
+                </Row>
+            </Container>
         )
     }
 }

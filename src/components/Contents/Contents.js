@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import {Map,Category} from 'components'
+import {Map,Category,isMobile} from 'components'
 import './Contents.scss'
 
 class Contents extends Component {
@@ -15,8 +15,7 @@ class Contents extends Component {
     }//componentDidMount
 
     render() {
-        const {mobileFlag} = this.props;
-        console.log(mobileFlag)
+        let mobileFlag=isMobile.Android() || isMobile.iOS();
         return(
             <Container fluid>
                 <Row className={`contents${mobileFlag ? '-mobile' : ''}`}>
