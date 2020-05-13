@@ -5,8 +5,13 @@ import {Container, Row} from 'react-bootstrap';
 //import from routes for links
 import {Home, } from './routes';
 //import from components
-
 import './App.css';
+
+import Store from "./stores"
+import { Provider } from "mobx-react"
+
+const store = new Store();
+
 class App extends Component {
   constructor(props){
     super(props)
@@ -17,6 +22,7 @@ class App extends Component {
   
   render() {
     return (
+    <Provider store={store}>
     <BrowserRouter>
       <Fragment>
         <Row>
@@ -26,6 +32,7 @@ class App extends Component {
         </Row>
       </Fragment>
     </BrowserRouter>
+    </Provider>
     );
   }
 }
