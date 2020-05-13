@@ -25,7 +25,6 @@ class Map extends Component {
             await this.props.store.map.SetMarkers(markerList,imageSrc);
     } 
 
-     //from map center to other franchise 미터단위  
      async CreateMap(){
         const script = document.createElement('script');
         script.async = true;
