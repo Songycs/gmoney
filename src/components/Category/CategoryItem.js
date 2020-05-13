@@ -68,8 +68,8 @@ class CategoryItem extends React.Component {
                             <div className='spliter'></div>
                             <div className='distance'>내 위치에서 {this.props.store.map.GetDistance(item.lat,item.long)}m</div>
                         </div>
-                        <div className='info'>{item.address}</div>
-                        <div className='info'>{item.phone}</div>
+                        <div className='info'>{item.add}</div>
+                        <div className='info'>{item.num}</div>
                     </div>
                     <img className='img-btn' src='./images/finding-away-b.svg'></img>
                     <img className='img-btn' src='./images/share.svg'></img>

@@ -11,8 +11,8 @@ class Franchises {
     this.franchiseList = [];
   }
   @action
-  GetFranchises = async (search_word,category,region)=> {
-    let response = await axios.get(`${franchiseAPI}${search_word}&region=${region}&category=${category}`);
+  GetFranchises = async (search_word,region,cate1,cate2)=> {
+    let response = await axios.get(`${franchiseAPI}${search_word}&region=${region}&cate1=${cate1}&cate2=${cate2}`);
     this.franchiseList = JSON.parse((response).data.body).body;
     return toJS(this.franchiseList);
         // await axios
