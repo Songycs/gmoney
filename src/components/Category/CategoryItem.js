@@ -1,5 +1,8 @@
 import React from '../../../node_modules/react';
+import { observer, inject } from 'mobx-react';
 
+@inject("store")
+@observer
 class CategoryItem extends React.Component {
     constructor(props){
         super(props);        
@@ -44,18 +47,34 @@ class CategoryItem extends React.Component {
                     <div onClick={item.disable ? null : this.props.onClick} className={`category-result-container ${classExt}`}>
                         <div className='contents-wrapper'>
                             <div className='first-row'>
-                                <div className='title'>{item.title}</div>
+                                <div className='title'>{item.name}</div>
                                 <div className='spliter'></div>
-                                <div className='distance'>내 위치에서 {item.distance}m</div>
+                                {/* <div className='distance'>내 위치에서 {item.distance}m</div> */}
                             </div>
                             <div className='info'>{item.address}</div>
-                            <div className='info'>{item.contact}</div>
+                            <div className='info'>{item.phone}</div>
                         </div>
                         <img className='img-btn' src='./images/finding-away-b.svg'></img>
                         <img className='img-btn' src='./images/share.svg'></img>
                     </div>
                 )    
-            }    
+            }
+        case undefined:
+            return(
+                <div onClick={item.disable ? null : this.props.onClick} className={`category-result-container ${classExt}`}>
+                    <div className='contents-wrapper'>
+                        <div className='first-row'>
+                            <div className='title'>{item.name}</div>
+                            <div className='spliter'></div>
+                            <div className='distance'>내 위치에서 {this.props.store.map.GetDistance(item.lat,item.long)}m</div>
+                        </div>
+                        <div className='info'>{item.address}</div>
+                        <div className='info'>{item.phone}</div>
+                    </div>
+                    <img className='img-btn' src='./images/finding-away-b.svg'></img>
+                    <img className='img-btn' src='./images/share.svg'></img>
+                </div>
+            )    
         default:
             break;
     }
