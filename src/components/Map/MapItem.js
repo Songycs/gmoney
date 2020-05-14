@@ -1,9 +1,13 @@
 import React from '../../../node_modules/react';
+import {isMobile} from 'components'
 
 class MapItem extends React.Component {
+  constructor(props){
+    super(props);    
+  }
   render() {
-    const { item, classExt, classExtForImg, classExtForTitle, classExtForText  } = this.props;
-    const {mobileFlag} = this.props;    
+    const { item, classExt, classExtForImg, classExtForTitle, classExtForText  } = this.props;    
+    let mobileFlag=isMobile.Android() || isMobile.iOS();
     if (item.type=='EditText'){
         return(
             <div onClick={item.disable ? null : this.props.onClick} className={`map-item-container${mobileFlag ? '-mobile' : ''} ${classExt}`} >                

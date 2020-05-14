@@ -62,7 +62,6 @@
 .map-item-container{    
     background-color:white;
     display: flex;    
-    overflow: hidden;
     margin:1px;
     padding:14px;
     align-items: center;    
@@ -95,21 +94,25 @@
 }
 
 .local-btn{
-    flex-basis: 5.5vw;
+    flex-basis: 12.771%;
 }
 
 .set-cur-loc-btn{
-    flex-basis: 6.9vw;
-    box-shadow: 0 0 12px 0 rgba(231, 231, 231, 0.5);
+    flex-basis: 15.9%;    
     background-color: #00cf93;
+    :hover{
+        background: #eee;
+    }
 }
 
+
+
 .cur-loc{
-    flex-basis: 20vw;
+    flex-basis: 46.265%;
 }
 
 .currency-btn{    
-    flex-basis: 10.9vw;
+    flex-basis: 25.3%;
 }
 
 .white{
