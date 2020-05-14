@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import {Map,Category,isMobile} from 'components'
+import { observer, inject } from 'mobx-react';
 import './Contents.scss'
 
 class Contents extends Component {
