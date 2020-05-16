@@ -21,12 +21,11 @@ class Map extends Component {
             await this.props.store.franchises.GetFranchises('','파주','음식점','한식');
             await this.CreateMap();
             var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-
             var markerList = this.props.store.franchises.franchiseList;
             await this.props.store.map.SetMarkers(markerList,imageSrc);
     } 
 
-     async CreateMap(){
+    async CreateMap(){
         const script = document.createElement('script');
         script.async = true;
         script.src = "https://dapi.kakao.com/v2/maps/sdk.js?appkey=da95929a40edbaa821402e4ba92c944d&autoload=false";
@@ -43,11 +42,6 @@ class Map extends Component {
                 this.setState({map:map});
                 //  max,min level set alloewed
                 map.setMaxLevel(9);
-                // zoom control
-                var mapTypeControl = new kakao.maps.MapTypeControl();
-                map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-                var zoomControl = new kakao.maps.ZoomControl();
-                map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
                 map.setCenter(this.props.store.map.currentLocation);
                 // kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
                 //    var latlng = mouseEvent.latLng});
@@ -60,10 +54,35 @@ class Map extends Component {
                     resolve('');
                 },100);
             })
-     }
+    }
+    onClickCurrentLoaction=(e)=>{
+        console.log("onClickCurrentLocation");
+        var locPosition = new kakao.maps.LatLng(37.56812473178144, 126.9218518787957); //default or fail
+        if (navigator.geolocation) {
+            //success
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var lat = position.coords.latitude, // 위도
+                    lon = position.coords.longitude; // 경도
+                locPosition = new kakao.maps.LatLng(lat, lon); //
+                console.log(position);
+                this.props.map.setCenter(locPosition);// 안됨
+                console.log("found:", locPosition)
+            });
+        }
+    }
+
+    onClickCurrencyButton=(e)=>{
+        console.log("onClickCurrencyButton");
+    }
+
+    onClickLocalButton=(e)=>{
+        console.log("onClickLocalButton");
+    }
+
     async componentDidMount(){
         this.FirstLoad();
     }//componentDidMount
+
     render() {
         var LOCAL_BUTTON={iconSrc:'./images/combined-shape.svg', title:'지역설정'}
         var SET_CUR_LOCATION_BUTTON={iconSrc:'./images/my-location.svg',title:'내 위치 보기'}
@@ -89,23 +108,10 @@ class Map extends Component {
                 <Row className={`map${mobileFlag ? '-mobile' : ''}`}>                    
                     <div className ='map-display' id='map'/>
                     <Row className={'map-button-container'}>
-                        <MapItem item={LOCAL_BUTTON} classExtForTitle={'green'} classExt={'local-btn'} />
+                        <MapItem item={LOCAL_BUTTON} classExtForTitle={'green'} classExt={'local-btn'} onClick={this.onClickLocalButton}/>
                         <MapItem item={CUR_LOCATION_BUTTON} classExt={'cur-loc'} />
-                        <MapItem item={CURRENCY_BUTTON} classExt={'currency-btn'} />
-                        <MapItem item={SET_CUR_LOCATION_BUTTON} classExtForTitle={'white'} classExt={'set-cur-loc-btn'} onClick={((e)=>{
-                            var locPosition = new kakao.maps.LatLng(37.56812473178144, 126.9218518787957); //default or fail
-                            if (navigator.geolocation) {
-                                //success
-                                navigator.geolocation.getCurrentPosition(function(position) {
-                                    var lat = position.coords.latitude, // 위도
-                                        lon = position.coords.longitude; // 경도
-                                    locPosition = new kakao.maps.LatLng(lat, lon); //
-                                    this.map.setCenter(locPosition);
-                                    console.log("found:", locPosition)
-                                });
-                                
-                            } 
-                        })}/>
+                        <MapItem item={CURRENCY_BUTTON} classExt={'currency-btn'} onClick={this.onClickCurrencyButton}/>
+                        <MapItem item={SET_CUR_LOCATION_BUTTON} classExtForTitle={'white'} classExt={'set-cur-loc-btn'} onClick={this.onClickCurrentLoaction}/>
                     </Row>
                 </Row>
             </Container>
