@@ -10,14 +10,30 @@ class CategoryItem extends React.Component {
   render() {
     const { item, classExt, classExtForImg, classExtForTitle, classExtForText  } = this.props;
     switch (item.type){
-        case 1://카테고리 타이틀
+        case 1://카테고리 타이틀            
+            var selectCategory=item.selectList.map((filterItem,index)=>{
+                var filter={
+                    "type":5,
+                    "id":filterItem.id,
+                    "text":filterItem.text                    
+                }
+                return <CategoryItem key={index} item={filter}/>
+            });            
             return (
                 <div onClick={item.disable ? null : this.props.onClick} className={`category-title-container ${classExt}`}>
                     <img src={item.iconSrc} className={`category-title-icon ${classExtForImg}`} alt="icon" />
-                    <span className={`${classExtForTitle ? `${classExtForTitle} ` : ''} category-title-text`}>{item.title}</span>
+                    <span className={`${classExtForTitle ? `${classExtForTitle} ` : ''} category-title-text`}>{item.title}</span>             
+                    {selectCategory}       
                 </div>
             );
         case 2://카테고리 버튼
+            if (typeof item.back != "undefined"){
+                return(
+                    <div onClick={item.disable ? null : this.props.onClick} className={`category-button back`}>
+                        <span className={`${classExtForText ? `${classExtForText} ` : ''} category-button-text`}>{item.text}</span>
+                    </div>
+                )
+            }
             return (
                 <div onClick={item.disable ? null : this.props.onClick} className={`category-button ${classExt}`}>
                     <span className={`${classExtForText ? `${classExtForText} ` : ''} category-button-text`}>{item.text}</span>
@@ -26,7 +42,7 @@ class CategoryItem extends React.Component {
         case 3://접기 펼치기
             return (
                 <div onClick={item.disable ? null : this.props.onClick} className={`category-fold-container ${classExt}`}>
-                    <img src={item.iconSrc} className={`category-title-icon ${classExtForImg}`} alt="icon" />
+                    <img src={item.iconSrc} className={`fold-icon ${classExtForImg}`} alt="icon" />
                 </div>
             );
         case 4://필터링결과 아이템
@@ -59,6 +75,12 @@ class CategoryItem extends React.Component {
                     </div>
                 )    
             }
+        case 5:
+            return(
+                <div className={`category-filter-container ${classExt}`} onClick={item.disable ? null : this.props.onClick}>
+                    <div className={`filter-text ${classExtForText}`}>{item.text}</div>                    
+                </div>
+            )        
         case undefined:
             return(
                 <div onClick={item.disable ? null : this.props.onClick} className={`category-result-container ${classExt}`}>

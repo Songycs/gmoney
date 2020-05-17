@@ -127,7 +127,7 @@
             "parent":0
         }
     ],
-    "category_sub_food":[
+    "category_sub_food":[        
         {
             "id":101,
             "depth":2,
@@ -1086,77 +1086,5 @@
             "text":"기타",
             "parent":18
         }
-    ],
-    "search_list_for_test":[
-        {
-            "type":4,
-            "isInit":false,
-            "title":"Test1",
-            "address":"경기도 수원시 팔달구 권선로",
-            "contact":"031-200-6518",
-            "distance":100
-        },
-        {
-            "type":4,
-            "isInit":false,
-            "title":"Test2",
-            "address":"경기도 수원시 권선구 세류로",
-            "contact":"031-200-1111",
-            "distance":100
-        },
-        {
-            "type":4,
-            "isInit":false,
-            "title":"Test3",
-            "address":"경기도 수원시 영통구 광교로",
-            "contact":"031-200-1135",
-            "distance":100
-        },
-        {
-            "type":4,
-            "isInit":false,
-            "title":"Test4",
-            "address":"경기도 수원시 팔달구 매산로",
-            "contact":"031-200-1253",
-            "distance":100
-        }
-        ,
-        {
-            "type":4,
-            "isInit":false,
-            "title":"Test4",
-            "address":"경기도 수원시 팔달구 매산로",
-            "contact":"031-200-1253",
-            "distance":100
-        }
-        ,
-        {
-            "type":4,
-            "isInit":false,
-            "title":"Test4",
-            "address":"경기도 수원시 팔달구 매산로",
-            "contact":"031-200-1253",
-            "distance":100
-        }
-        ,
-        {
-            "type":4,
-            "isInit":false,
-            "title":"Test4",
-            "address":"경기도 수원시 팔달구 매산로",
-            "contact":"031-200-1253",
-            "distance":100
-        }
-        ,
-        {
-            "type":4,
-            "isInit":false,
-            "title":"Test4",
-            "address":"경기도 수원시 팔달구 매산로",
-            "contact":"031-200-1253",
-            "distance":100
-        }
     ]
-
-
 }

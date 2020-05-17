@@ -18,11 +18,11 @@ class Map extends Component {
     }
     async FirstLoad(){
         //GetFranchises('search_word','region','cate1','cate2')
-            await this.props.store.franchises.GetFranchises('','파주','음식점','한식');
-            await this.CreateMap();
-            var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-            var markerList = this.props.store.franchises.franchiseList;
-            await this.props.store.map.SetMarkers(markerList,imageSrc);
+        await this.props.store.franchises.GetFranchises('','파주','음식점','한식');
+        await this.CreateMap();
+        var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+        var markerList = this.props.store.franchises.franchiseList;
+        await this.props.store.map.SetMarkers(markerList,imageSrc);
     } 
 
     async CreateMap(){
