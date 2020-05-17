@@ -7,17 +7,19 @@ class Map {
   @observable currentLocation;
   @observable currentRegion;
   @observable currnetAddress;
+  @observable currentMarkers;
+
   constructor() {
     this.mapObject = null;
     this.currentLocation = '';
     this.currentRegion = '';
-    this.currentAddress = ''
+    this.currentAddress = '';
+    this.currentMarkers = [];
     this.CurrentLocation();
   }
   @action
   SetMap = (map) =>
   {
-    console.log("set,",map) 
     this.mapObject = map;
   }
   GetMap = () =>
@@ -86,10 +88,9 @@ class Map {
       }
     }
     @action
-    SetMarkers = (locations,imageSrc) => { 
-      console.log("set",toJS(locations))
+    SetMarkers = async (locations,imageSrc) => { 
+      await this.ClearMarkers();
       var tmpMap = this.mapObject;
-      console.log("map:",tmpMap)
       var marker ;
       for (var i = 0; i < Object.keys(locations).length; i++) {
           // marker size
@@ -105,15 +106,26 @@ class Map {
               image : markerImage, // 마커 이미지 
               clickable: true
           });
+          this.currentMarkers.push(marker)
           marker.setMap(tmpMap);
       }
       return new Promise(function(resolve,reject){
         setTimeout(function(){
-            console.log("Setting markers")
             resolve('');
         },100);
     })      
    }
+   @action
+   ClearMarkers = ()=>{
+    for(var i = 0; i<this.currentMarkers.length;i++)
+      this.currentMarkers[i].setMap(null);
+    this.currentMarkers = [];
+    return new Promise(function(resolve,reject){
+      setTimeout(function(){
+          resolve('');
+      },100);
+  })    
+  }
 }
 
 export default Map

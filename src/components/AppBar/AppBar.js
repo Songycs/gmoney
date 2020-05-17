@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import AppBarItem from './AppBarItem'
 import './AppBar.scss'
 import { observer, inject } from 'mobx-react';
+import {toJS} from 'mobx'
 
 const CURRENCY_BUTTON = { type:"normal", title: "기준화폐" , iconSrc: './images/base-money.svg' , text: "경기지역"};
 const LOGO_BUTTON = { type:"normal", title: "", iconSrc: './images/logo.svg'};
@@ -16,8 +17,18 @@ class AppBar extends Component {
         super(props);        
     }
 
-    handleSearch=()=>{
-        console.log('handleSearch',this.props.store.category.searchKeyword);
+    handleSearch= async ()=>{
+        console.log(this.props.store.category.GetCurrentDepth());
+        if(this.props.store.category.GetCurrentDepth()===2)
+            await this.props.store.franchises.GetFranchises(this.props.store.category.searchKeyword,'파주',toJS(this.props.store.category.filterList[0].text),toJS(this.props.store.category.filterList[1].text));
+        else if(this.props.store.category.GetCurrentDepth()===1)
+            await this.props.store.franchises.GetFranchises(this.props.store.category.searchKeyword,'파주',toJS(this.props.store.category.filterList[0].text),'');
+        else 
+            await this.props.store.franchises.GetFranchises(this.props.store.category.searchKeyword,'파주','','');
+        //var result =  this.props.store.franchises.GetFranchises(this.props.store.category.searchKeyword,this.props.store.map.currentRegion,toJS(this.props.store.category.filterList[0].text),toJS(this.props.store.category.filterList[1].text));
+        var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+        var markerList = this.props.store.franchises.franchiseList;
+        await this.props.store.map.SetMarkers(markerList,imageSrc);
     }
 
     render() {        

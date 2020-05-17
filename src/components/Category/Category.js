@@ -78,8 +78,20 @@ class Category extends Component {
         }
     }
 
-    handleClickCategory=(e,item)=>{        
-        if(typeof item.back != 'undefined'){//백 버튼 눌렀을 경우            
+    handleClickCategory= async (e,item) =>{
+        await this.handleCategory(e,item);
+        if(this.props.store.category.GetCurrentDepth()===2)
+            await this.props.store.franchises.GetFranchises(this.props.store.category.searchKeyword,'파주',toJS(this.props.store.category.filterList[0].text),toJS(this.props.store.category.filterList[1].text));
+        else if(this.props.store.category.GetCurrentDepth()===1)
+            await this.props.store.franchises.GetFranchises(this.props.store.category.searchKeyword,'파주',toJS(this.props.store.category.filterList[0].text),'');
+
+        var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+        var markerList = this.props.store.franchises.franchiseList;
+        await this.props.store.map.SetMarkers(markerList,imageSrc);
+    }
+
+    handleCategory=(e,item)=>{  
+        if(typeof item.back !== 'undefined'){//백 버튼 눌렀을 경우            
             this.props.store.category.RemoveSubFilter();//마지막 필터 삭제
             this.props.store.category.SetCategoryList(this.getSubCategoryById(0));//첫 카테고리 선택으로 돌아가기
             this.props.store.category.SetCategoryName(this.getSubCategoryById(0));
@@ -87,24 +99,29 @@ class Category extends Component {
         else if (this.props.store.category.filterList.includes(item)){//같은 버튼 눌렀을 경우
             this.props.store.category.RemoveLastFilter();//마지막 필터 삭제 (어차피 같은 필터가 마지막에 있을거니까)
         }
-        else if (this.props.store.category.GetCurrentDepth()==item.depth){//같은 뎁스 다른 버튼 눌렀을 경우
+        else if (this.props.store.category.GetCurrentDepth()===item.depth){//같은 뎁스 다른 버튼 눌렀을 경우
             this.props.store.category.RemoveLastFilter();//마지막 필터 삭제 (어차피 뎁스 같은 필터가 마지막에 있을거니까)
             this.props.store.category.AddFilter(item);
-            if (item.depth==1){
+            if (item.depth===1){
                 this.props.store.category.SetCategoryList(this.getSubCategoryById(item.id));
                 this.props.store.category.SetCategoryName(this.getSubCategoryById(item.id));
             }
         }
-        else{//첫 카테고리 선택할 경우            
-            if (this.props.store.category.getCurrentDepth==2){
+        else{//첫 카테고리 선택할 경우      
+            if (this.props.store.category.getCurrentDepth===2){
                 this.props.store.category.ClearFilter();
             }
             this.props.store.category.AddFilter(item);
-            if (item.depth==1){
+            if (item.depth===1){
                 this.props.store.category.SetCategoryList(this.getSubCategoryById(item.id));
                 this.props.store.category.SetCategoryName(this.getSubCategoryById(item.id));
             }
         }
+        return new Promise(function(resolve,reject){
+            setTimeout(function(){
+                resolve('');
+            },100);
+        })      
     }
 
     handleClickItem=(e)=>{

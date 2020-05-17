@@ -56,19 +56,11 @@ class Map extends Component {
             })
     }
     onClickCurrentLoaction=(e)=>{
-        console.log("onClickCurrentLocation");
-        var locPosition = new kakao.maps.LatLng(37.56812473178144, 126.9218518787957); //default or fail
-        if (navigator.geolocation) {
-            //success
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var lat = position.coords.latitude, // 위도
-                    lon = position.coords.longitude; // 경도
-                locPosition = new kakao.maps.LatLng(lat, lon); //
-                console.log(position);
-                this.props.map.setCenter(locPosition);// 안됨
-                console.log("found:", locPosition)
-            });
-        }
+        // 위치 정보 없을때 재호출  
+        if(this.props.store.map.currentLocation === '' )
+            this.props.store.map.CurrentLocation();
+        else
+            this.props.store.map.SetCenter(this.props.store.map.currentLocation);   
     }
 
     onClickCurrencyButton=(e)=>{
