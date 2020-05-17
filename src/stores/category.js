@@ -5,11 +5,13 @@ class Category {
   @observable filterList;
   @observable categoryList;
   @observable listName;
+  @observable searchKeyword;
 
   constructor() {
     this.filterList = [];
     this.listName="category_main";
     this.categoryList=data["category_main"];
+    this.searchKeyword="";
   }
   @action
   AddFilter = (item) => {
