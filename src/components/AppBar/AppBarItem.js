@@ -11,26 +11,26 @@ class AppBarItem extends React.Component {
     this.props.store.category.searchKeyword=e.target.value;
   }
   render() {
-    const { item, classExt, classExtForImg, classExtForTitle, classExtForText  } = this.props;
+    const { item, classExt} = this.props;
+    let mobile=this.props.store.util.getMobileClassName();
     switch(item.type){
-      case 'search':
-        return (              
-          <div className="search-container">
-            <input type="input" class="search-field" placeholder="가맹점" name="search" id='search' value={this.searchKeyword} onChange={this.inputChange} required />
-            <label for="search" class="search-label">가맹점 검색</label>
-            <img src="./images/search-24px.svg" onClick={this.props.onClick}></img>
-          </div>
-          
-        )
-      default:
+      case "LOGO":
         return (
-          <div onClick={item.disable ? null : this.props.onClick} className={`appbar-item-container ${classExt}`}>
-            <img src={item.iconSrc} className={`appbar-item-icon ${classExtForImg}`} alt="icon" />
-            <span className={`${classExtForTitle ? `${classExtForTitle} ` : ''}appbar-item-title`}>{item.title}</span>
-            <span className={`${classExtForText ? `${classExtForText} ` : ''}appbar-item-text`}>{item.text}</span>
+          <div onClick={item.disable ? null : this.props.onClick} className={`appbar-item-container ${mobile} ${classExt}`}>
+            <img src={item.iconLogo} className={`logo ${mobile}`} alt="icon" />
           </div>
-        )
-    }    
+        );
+      case "CURRENCY":
+        return (
+          <div onClick={item.disable ? null : this.props.onClick} className={`appbar-item-container ${mobile} ${classExt}`}>
+            <img src={item.iconCurrency} className={`currency-icon`} alt="icon" />
+            <span className={`currency-text ${mobile}`}>{item.title}</span>
+            <img src={item.iconDropDown}className={`currency-dropdown ${mobile}`}/>
+          </div>
+        );
+      default:
+        return(<div/>);
+    }
   }
 }
 

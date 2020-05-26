@@ -4,8 +4,6 @@ import {Container, Row} from 'react-bootstrap';
 
 //import from routes for links
 import {Home, } from './routes';
-//import from components
-import './App.css';
 
 import Store from "./stores"
 import { Provider } from "mobx-react"

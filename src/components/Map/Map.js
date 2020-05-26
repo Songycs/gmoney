@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import {MapItem,isMobile} from 'components'
+import {MapItem,Category,SearchList} from 'components'
 import { observer, inject } from 'mobx-react';
 import './Map.scss'
 const { kakao } = window;
@@ -11,13 +11,9 @@ class Map extends Component {
     constructor(props){
         super(props);
         this.state = {
-        locations:[],
-        geocoder:null,
-        map:null
         }
     }
     async FirstLoad(){
-        //GetFranchises('search_word','region','cate1','cate2')
         await this.props.store.franchises.GetFranchises('','파주','음식점','한식');
         await this.CreateMap();
         var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
@@ -63,49 +59,16 @@ class Map extends Component {
             this.props.store.map.SetCenter(this.props.store.map.currentLocation);   
     }
 
-    onClickCurrencyButton=(e)=>{
-        console.log("onClickCurrencyButton");
-    }
-
-    onClickLocalButton=(e)=>{
-        console.log("onClickLocalButton");
-    }
-
     async componentDidMount(){
         this.FirstLoad();
     }//componentDidMount
 
-    render() {
-        var LOCAL_BUTTON={iconSrc:'./images/combined-shape.svg', title:'지역설정'}
-        var SET_CUR_LOCATION_BUTTON={iconSrc:'./images/my-location.svg',title:'내 위치 보기'}
-        var LOCAL_BUTTON_MOBILE={iconSrc:'./images/combined-shape-copy.svg'}        
-        var CUR_LOCATION_BUTTON={iconSrc:'./images/locating.svg', title:'현재위치' , text:'경기도 용인시 처인구 중부대로 1199'}
-        var SEARCH_LOCATION_EDIT={type:'EditText',text:'검색어를 입력해주세요'}
-        var CURRENCY_BUTTON={iconSrc:'./images/base-money.svg',title:'기준화폐', text:'경기지역화폐'}
-
-        let mobileFlag=isMobile.Android() || isMobile.iOS();
+    render() {        
         return(
-            mobileFlag?
-            <Container fluid className={`map-container${mobileFlag ? '-mobile' : ''}`}>
-                <Row className={`map${mobileFlag ? '-mobile' : ''}`}>                    
-                    <div className ='map-display' id='map'/>
-                    <Row className={'map-button-container-mobile'}>
-                        <MapItem item={LOCAL_BUTTON_MOBILE} />
-                        <MapItem item={SEARCH_LOCATION_EDIT}  classExt={'serach-edit-text'}/>
-                    </Row>
-                </Row>
-            </Container>    
-            :
-            <Container fluid className={`map-container${mobileFlag ? '-mobile' : ''}`}>
-                <Row className={`map${mobileFlag ? '-mobile' : ''}`}>                    
-                    <div className ='map-display' id='map'/>
-                    <Row className={'map-button-container'}>
-                        <MapItem item={LOCAL_BUTTON} classExtForTitle={'green'} classExt={'local-btn'} onClick={this.onClickLocalButton}/>
-                        <MapItem item={CUR_LOCATION_BUTTON} classExt={'cur-loc'} />
-                        <MapItem item={CURRENCY_BUTTON} classExt={'currency-btn'} onClick={this.onClickCurrencyButton}/>
-                        <MapItem item={SET_CUR_LOCATION_BUTTON} classExtForTitle={'white'} classExt={'set-cur-loc-btn'} onClick={this.onClickCurrentLoaction}/>
-                    </Row>
-                </Row>
+            <Container fluid className='map-container'>
+                <Row className={`map`} id='map'/>
+                <Category/>
+                <SearchList/>        
             </Container>
         )
     }

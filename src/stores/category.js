@@ -3,6 +3,7 @@ import data from './Data.json'
 
 class Category {
   @observable filterList;
+  @observable categoryFlag;
   @observable categoryList;
   @observable listName;
   @observable searchKeyword;
@@ -12,6 +13,7 @@ class Category {
     this.listName="category_main";
     this.categoryList=data["category_main"];
     this.searchKeyword="";
+    this.categoryFlag=false;
   }
   @action
   AddFilter = (item) => {
@@ -58,8 +60,13 @@ class Category {
   }
 
   @action
-  GetCurrentDepth=()=>{
+  GetCurrentDepth = ()=>{
     return this.filterList.length;
+  }
+
+  @action
+  SetCategoryFlag = (flag)=>{
+    this.categoryFlag=flag;
   }
 
 }

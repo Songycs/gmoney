@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@babel/core": "7.9.0",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-decorators": "^7.8.3",
     "@svgr/webpack": "4.3.3",
     "@testing-library/jest-dom": "^4.2.4",
@@ -56,6 +55,7 @@
     "react-bootstrap": "^1.0.0",
     "react-dev-utils": "^10.2.1",
     "react-dom": "^16.13.1",
+    "react-native-textinput-effects": "^0.6.1",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.5",
@@ -93,6 +93,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
     "core-decorators": "^0.20.0",
     "customize-cra": "^0.9.1",
     "react-app-rewired": "^2.1.6"

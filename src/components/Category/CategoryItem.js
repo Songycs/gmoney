@@ -8,45 +8,12 @@ class CategoryItem extends React.Component {
         super(props);        
     }
   render() {
-    const { item, classExt, classExtForImg, classExtForTitle, classExtForText  } = this.props;
-    switch (item.type){
-        case 1://카테고리 타이틀            
-            var selectCategory=item.selectList.map((filterItem,index)=>{
-                var filter={
-                    "type":5,
-                    "id":filterItem.id,
-                    "text":filterItem.text                    
-                }
-                return <CategoryItem key={index} item={filter}/>
-            });            
-            return (
-                <div onClick={item.disable ? null : this.props.onClick} className={`category-title-container ${classExt}`}>
-                    <img src={item.iconSrc} className={`category-title-icon ${classExtForImg}`} alt="icon" />
-                    <span className={`${classExtForTitle ? `${classExtForTitle} ` : ''} category-title-text`}>{item.title}</span>             
-                    {selectCategory}       
-                </div>
-            );
-        case 2://카테고리 버튼
-            if (typeof item.back != "undefined"){
-                return(
-                    <div onClick={item.disable ? null : this.props.onClick} className={`category-button back`}>
-                        <span className={`${classExtForText ? `${classExtForText} ` : ''} category-button-text`}>{item.text}</span>
-                    </div>
-                )
-            }
-            return (
-                <div onClick={item.disable ? null : this.props.onClick} className={`category-button ${classExt}`}>
-                    <span className={`${classExtForText ? `${classExtForText} ` : ''} category-button-text`}>{item.text}</span>
-                </div>
-            );
-        case 3://접기 펼치기
-            return (
-                <div onClick={item.disable ? null : this.props.onClick} className={`category-fold-container ${classExt}`}>
-                    <img src={item.iconSrc} className={`fold-icon ${classExtForImg}`} alt="icon" />
-                </div>
-            );
-        case 4://필터링결과 아이템
-            if(item.isInit){//처음시작
+    const { item, classExt} = this.props;
+    let searchPlaceholder="장소, 주소 입력"
+    let mobile=this.props.store.util.getMobileClassName();
+    switch (item.type){        
+        case 1://필터링결과 아이템
+            if(item.isResultEmpty){//결과없음
                 return(
                     <div className={`category-result-container-init ${classExt}`}>                        
                         <div className={'init-text'}>
@@ -75,28 +42,27 @@ class CategoryItem extends React.Component {
                     </div>
                 )    
             }
-        case 5:
-            return(
-                <div className={`category-filter-container ${classExt}`} onClick={item.disable ? null : this.props.onClick}>
-                    <div className={`filter-text ${classExtForText}`}>{item.text}</div>                    
+        case 2://카테고리 버튼
+            return (
+                <div onClick={item.disable ? null : this.props.onClick} className={`category-button-select`}>
+                    <span className={`category-button-select-text`}>{item.text}</span>
                 </div>
-            )        
-        case undefined:
+            );       
+        case 3://카테고리 열기닫기 버튼
             return(
-                <div onClick={item.disable ? null : this.props.onClick} className={`category-result-container ${classExt}`}>
-                    <div className='contents-wrapper'>
-                        <div className='first-row'>
-                            <div className='title'>{item.name}</div>
-                            <div className='spliter'></div>
-                            <div className='distance'>내 위치에서 {this.props.store.map.GetDistance(item.lat,item.long)}m</div>
-                        </div>
-                        <div className='info'>{item.add}</div>
-                        <div className='info'>{item.num}</div>
-                    </div>
-                    <img className='img-btn' src='./images/finding-away-b.svg'></img>
-                    <img className='img-btn' src='./images/share.svg'></img>
+                <div onClick={item.disable ? null : this.props.onClick} className={`category-button-open ${mobile}`} >
+                    <svg className={`${classExt} ${mobile}`} xmlns="http://www.w3.org/2000/svg" width="16" height="12" viewBox="0 0 16 12" >
+                        <path fill="#00D597" fill-rule="evenodd" d="M15 10c.552 0 1 .448 1 1s-.448 1-1 1H1c-.552 0-1-.448-1-1s.448-1 1-1h14zm0-5c.552 0 1 .448 1 1s-.448 1-1 1H1c-.552 0-1-.448-1-1s.448-1 1-1h14zm0-5c.552 0 1 .448 1 1s-.448 1-1 1H1c-.552 0-1-.448-1-1s.448-1 1-1h14z"/>
+                    </svg>
                 </div>
-            )    
+            )
+        case 4://검색창
+            return(
+                <div className={`category-input-container ${mobile}`}>
+                    <input type="text" className={`category-input-search ${mobile}`} id="search" placeholder={searchPlaceholder} required="" />
+                    <img className={`category-input-search-icon ${mobile}`} src="./images/search-24px.svg"/>
+                </div>
+            )
         default:
             break;
     }

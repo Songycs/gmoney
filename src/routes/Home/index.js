@@ -4,10 +4,11 @@ import { observer, inject } from 'mobx-react';
 
 import {  
   AppBar, 
-  Contents, 
-  Bottom,
-  isMobile
+  Map, 
+  Bottom
 } from '../../components'
+
+import './home.scss'
 
 @inject('store')
 @observer
@@ -16,12 +17,10 @@ class Home extends Component {
     super(props)
   } 
   render() {
-    const store = this.props;
-    let mobileFlag=isMobile.Android() || isMobile.iOS();
     return (
-        <Container fluid className={`${mobileFlag? 'App-mobile': 'App'}`} >
+        <Container fluid className={'home'}>
           <AppBar/>
-          <Contents store= {store}/>          
+          <Map/>
           <Bottom/>
         </Container>
     );

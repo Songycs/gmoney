@@ -4,17 +4,14 @@ import {CategoryItem,isMobile} from 'components'
 import './Category.scss'
 import { observer, inject } from 'mobx-react';
 import {observable,toJS} from 'mobx'
-
-const FOLD_ITEM = {type:3, iconSrc:'./images/keyboard_arrow_up-24px.svg'}
-const INIT_RESULT_ITEM = {type:4, isInit:true}
+const INIT_RESULT_ITEM = {type:"RESULT", isResultEmpty:true}
 
 @inject("store")
 @observer
 class Category extends Component {
     constructor(props){
         super(props);        
-        this.state = {                 
-            fold:false            
+        this.state = {         
         };        
     }
     componentDidMount(){
@@ -62,19 +59,6 @@ class Category extends Component {
                 return "category_sub_etc";
             default:
                 return "";
-        }
-    }
-
-    handleClickFold=()=>{
-        if(this.state.fold){
-            this.setState({
-                fold:false
-            })
-        }
-        else{
-            this.setState({
-                fold:true
-            })
         }
     }
 
@@ -128,40 +112,40 @@ class Category extends Component {
         console.log('handleClickItem')
     }
 
+    onClickOpen=(e)=>{        
+        this.props.store.category.SetCategoryFlag(!this.props.store.category.categoryFlag);
+    }
+
     render() {      
         var searchList=this.props.store.franchises.franchiseList.length==0?<CategoryItem item={INIT_RESULT_ITEM}/>:toJS(this.props.store.franchises.franchiseList).map((item)=>{return <CategoryItem item={item} onClick={this.handleClickItem}/>});        
-        var backItem = {type:2, back:true, text : "뒤로가기"}
+        var btnOpenCategory = {type:3,iconSrc:'./images/category.svg'}
+        var searchBar={type:4,iconSrc:'./images/keyobard_arrow_up-24px.svg'};
+        var mobile=this.props.store.util.getMobileClassName();
+        var selected=this.props.store.category.categoryFlag?'selected':'';
+        
         return(
-            <Container fluid className={`category-wrapper${this.props.store.util.getMobileFlag() ? '-mobile' : ''}`}>
-                <Row className={`category-button-wrapper${this.props.store.util.getMobileFlag() ? '-mobile' : ''}`}>
-                    <CategoryItem item={{ type:1, title: "업장 카테고리" , iconSrc: './images/shop.svg', selectList:this.props.store.category.filterList}}/>                                      
-                        {!this.state.fold&& 
-                        <Row className={`category-button-container${this.props.store.util.getMobileFlag() ? '-mobile' : ''}`} >
-                            {
-                                this.props.store.category.isMainCategory()?
-                                ''
-                                :
-                                <CategoryItem item={backItem} onClick={(e)=>{this.handleClickCategory(e,backItem)}}/>
-                            }
-                            {
-                                this.props.store.category.categoryList.map((item,index)=>{
-                                    return <CategoryItem    
-                                                key={index} 
-                                                item={item} 
-                                                classExt={`${this.props.store.category.filterList.includes(item)?'select':''}`} 
-                                                onClick={
-                                                    (e)=>{
-                                                        this.handleClickCategory(e,item)
-                                                    }}/>
-                                })
-                            }
-                        </Row>
-                        }                    
-                    <CategoryItem item={FOLD_ITEM} onClick={this.handleClickFold} classExtForImg={`${this.state.fold?'flip':''}`}/>
+            <Container fluid className={`category-container ${mobile} ${selected}`}>
+                <Row className={`category-search-container ${mobile}`}>
+                    <CategoryItem item={btnOpenCategory} onClick={this.onClickOpen} classExt={selected}></CategoryItem>    
+                    <CategoryItem item={searchBar}></CategoryItem>    
                 </Row>
-                <Row className={`search-result-container${this.props.store.util.getMobileFlag() ? '-mobile' : ''}`}>
-                {searchList}                    
-                </Row>
+                {this.props.store.category.categoryFlag&&
+                    
+                    <Row className={`category-button-container`}>
+                    {
+                        this.props.store.category.categoryList.map((item,index)=>{
+                            return <CategoryItem    
+                                        key={index} 
+                                        item={item}
+                                        onClick={
+                                            (e)=>{
+                                                this.handleClickCategory(e,item)
+                                            }}/>
+                        })
+                    }
+                    </Row>
+                }
+                
             </Container>
         )
     }

@@ -11,6 +11,12 @@ class Util {
   getMobileFlag = () => {
     return this.mobileFlag;
   }
+
+  @action
+  getMobileClassName = () =>{
+    if(this.mobileFlag) return "mobile";
+    else return "";
+  }
 }
 
 export default Util;
