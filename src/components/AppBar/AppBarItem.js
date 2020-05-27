@@ -13,20 +13,21 @@ class AppBarItem extends React.Component {
   render() {
     const { item, classExt} = this.props;
     let mobile=this.props.store.util.getMobileClassName();
+    var selected=this.props.store.search.regionFlag?'selected':'';
     switch(item.type){
       case "LOGO":
         return (
-          <div onClick={item.disable ? null : this.props.onClick} className={`appbar-item-container ${mobile} ${classExt}`}>
-            <img src={item.iconLogo} className={`logo ${mobile}`} alt="icon" />
-          </div>
+          <img src={item.iconLogo} className={`logo ${mobile}`} alt="icon" />
         );
       case "CURRENCY":
         return (
-          <div onClick={item.disable ? null : this.props.onClick} className={`appbar-item-container ${mobile} ${classExt}`}>
-            <img src={item.iconCurrency} className={`currency-icon`} alt="icon" />
-            <span className={`currency-text ${mobile}`}>{item.title}</span>
-            <img src={item.iconDropDown}className={`currency-dropdown ${mobile}`}/>
-          </div>
+            <div onClick={item.disable ? null : this.props.onClick} className={`currency ${mobile} ${selected}`}>
+              <div className={'body'}>
+                <img src={item.iconCurrency} className={`icon`} alt="icon" />
+                <span className={`text ${mobile}`}>지역화폐를 선택해주세요</span>
+              </div>
+              <img src={item.iconDropDown}className={`dropdown ${mobile}`}/>
+            </div>
         );
       default:
         return(<div/>);

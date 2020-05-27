@@ -3,8 +3,8 @@ import { Container, Row, Col } from 'react-bootstrap';
 import AppBarItem from './AppBarItem'
 import './AppBar.scss'
 import { observer, inject } from 'mobx-react';
+import {Region} from 'components'
 
-const CURRENCY_BUTTON = { type:"CURRENCY",title: "기준화폐" , iconCurrency: './images/base-money.svg',iconDropDown:'./images/path-3.svg'};
 const LOGO_BUTTON = { type:"LOGO",title: "", iconLogo: './images/logo.svg'};
 
 @inject("store")
@@ -13,6 +13,10 @@ class AppBar extends Component {
     constructor(props){
         super(props);
     }
+    
+    onClickOpenRegion=(e)=>{
+        this.props.store.search.SetRegionFlag(!this.props.store.search.regionFlag);
+    }
 
     render() {
         let mobile=this.props.store.util.getMobileClassName();
@@ -20,7 +24,7 @@ class AppBar extends Component {
             <Container fluid className='appbar-container'>
                 <Row className={`appbar ${mobile}`}>
                     <AppBarItem item={LOGO_BUTTON}/>
-                    <AppBarItem item={CURRENCY_BUTTON} classExt={'currency-container'}/>
+                    <Region/>
                 </Row>
             </Container>
         );

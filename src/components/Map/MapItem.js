@@ -11,12 +11,12 @@ class MapItem extends React.Component {
   }
   render() {
     const { item, classExt, classExtForImg, classExtForTitle, classExtForText  } = this.props;    
-    let mobileClassName=this.props.store.util.getMobileClassName();    
+    let mobile=this.props.store.util.getMobileClassName(); 
     return (
-      <div onClick={item.disable ? null : this.props.onClick} className={`map-item-container ${mobileClassName} ${classExt}`} >
-        <img src={item.iconSrc} className={`map-item-icon${mobileClassName} ${classExtForImg}`}/>
-        <span className={`${classExtForTitle ? `${classExtForTitle} ` : ''}map-item-title ${mobileClassName}`}>{item.title}</span>
-        <span className={`${classExtForText ? `${classExtForText} ` : ''}map-item-text ${mobileClassName}`}>{item.text}</span>
+      <div onClick={item.disable ? null : this.props.onClick} className={`map-item-container ${mobile} ${classExt}`} >
+        <img src={item.iconSrc} className={`map-item-icon${mobile} ${classExtForImg}`}/>
+        <span className={`${classExtForTitle ? `${classExtForTitle} ` : ''}map-item-title ${mobile}`}>{item.title}</span>
+        <span className={`${classExtForText ? `${classExtForText} ` : ''}map-item-text ${mobile}`}>{item.text}</span>
       </div>
     )
   }

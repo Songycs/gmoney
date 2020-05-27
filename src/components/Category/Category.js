@@ -4,7 +4,6 @@ import {CategoryItem,isMobile} from 'components'
 import './Category.scss'
 import { observer, inject } from 'mobx-react';
 import {observable,toJS} from 'mobx'
-const INIT_RESULT_ITEM = {type:"RESULT", isResultEmpty:true}
 
 @inject("store")
 @observer
@@ -108,16 +107,11 @@ class Category extends Component {
         })      
     }
 
-    handleClickItem=(e)=>{
-        console.log('handleClickItem')
-    }
-
     onClickOpen=(e)=>{        
         this.props.store.category.SetCategoryFlag(!this.props.store.category.categoryFlag);
     }
 
-    render() {      
-        var searchList=this.props.store.franchises.franchiseList.length==0?<CategoryItem item={INIT_RESULT_ITEM}/>:toJS(this.props.store.franchises.franchiseList).map((item)=>{return <CategoryItem item={item} onClick={this.handleClickItem}/>});        
+    render() {              
         var btnOpenCategory = {type:3,iconSrc:'./images/category.svg'}
         var searchBar={type:4,iconSrc:'./images/keyobard_arrow_up-24px.svg'};
         var mobile=this.props.store.util.getMobileClassName();
