@@ -11,25 +11,64 @@ $white-color:#fff;
         min-height: 100%;
     }
     &-button{
-        &-container{
-            position:absolute;
-            display: inline-flex;  
+        position: absolute;
+        right:240px;
+        top:24px;
+        background: $white-color;        
+        z-index: 2;
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+        &.mobile{
+            right:15px;
+            top:90px;
+        }
+        .enlargement{
+            font-family: NanumGothic;
+            font-size: 28px;
+            color:#666;
+            display: flex;
             align-items: center;
-            border-radius: 4px;
-            top:24px;
-            left:240px;
-            width:540px;
-            height:60px;
-            overflow:hidden;        
-            z-index:1;
-            background-color:white;
-            box-shadow: 0 1px 3px 0 rgba(126, 126, 126, 0.31);
-            &.mobile{                
-                top:10px;
-                left:15px;
-                width:calc(100% - 30px);
-                height:50px;
+            justify-content: center;
+            width:52px;
+            height:52px;
+            border: solid 1px #ececec;  
+            &.mobile{
+                width:40px;
+                height:40px;
             }
+        }
+        .reduction{
+            font-family: NanumGothic;
+            font-size: 42px;
+            color:#666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width:52px;
+            height:52px;
+            border: solid 1px #ececec;
+            &.mobile{
+                width:40px;
+                height:40px;
+            }
+        }
+    }
+    &-loc{        
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        right:240px;
+        top:152px;
+        width:52px;
+        height:52px;
+        z-index: 2;
+        background: $white-color;
+        &.mobile{
+            right:15px;
+            top:200px;
+            width:40px;
+            height:40px;
         }
     }
     &-item-container{

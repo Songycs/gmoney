@@ -1091,147 +1091,176 @@
         {
             "id":0,
             "type":2,
-            "region":"현 위치 화폐"
+            "text":"현 위치 화폐",
+            "region":""
         },
         {
             "id":1,            
             "type":2,
-            "region":"가평군"            
+            "text":"가평군",
+            "region":"가평"   
         },
         {
             "id":2,            
             "type":2,
-            "region":"고양시"            
+            "text":"고양시",
+            "region":"고양"
         },
         {
             "id":3,            
             "type":2,
-            "region":"과천시"            
+            "text":"과천시",
+            "region":"과천"
         },
         {
             "id":4,            
             "type":2,
-            "region":"광명시"            
+            "text":"광명시",
+            "region":"광명"
         },
         {
             "id":5,            
             "type":2,
-            "region":"광주시"            
+            "text":"광주시",
+            "region":"광주"
         },
         {
             "id":6,            
             "type":2,
-            "region":"구리시"            
+            "text":"구리시",
+            "region":"구리"
         },
         {
             "id":7,            
             "type":2,
-            "region":"군포시"            
+            "text":"군포시",
+            "region":"군포"
         },
         {
             "id":8,            
             "type":2,
-            "region":"남양주시"            
+            "text":"남양주시",
+            "region":"남양주"
         },
         {
             "id":9,            
             "type":2,
-            "region":"동두천시"            
+            "text":"동두천시",
+            "region":"동두천"
         },
         {
             "id":10,            
             "type":2,
-            "region":"부천시"            
+            "text":"부천시",
+            "region":"부천"
         },
         {
             "id":11,            
             "type":2,
-            "region":"수원시"            
+            "text":"수원시",
+            "region":"수원"
         },
         {
             "id":12,            
             "type":2,
-            "region":"안산시"            
+            "text":"안산시",
+            "region":"안산"
         },
         {
             "id":13,            
             "type":2,
-            "region":"안성시"            
+            "text":"안성시",
+            "region":"안성"
         },
         {
             "id":14,            
             "type":2,
-            "region":"안양시"            
+            "text":"안양시",
+            "region":"안양"
         },
         {
             "id":15,            
             "type":2,
-            "region":"양주시"            
+            "text":"양주시",
+            "region":"양주"
         },
         {
             "id":16,            
             "type":2,
-            "region":"양평군"            
+            "text":"양평군",
+            "region":"양평"
         },
         {
             "id":17,            
             "type":2,
-            "region":"여주시"            
+            "text":"여주시",
+            "region":"여주"
         },
         {
             "id":18,            
             "type":2,
-            "region":"연천군"            
+            "text":"연천군",
+            "region":"연천"
         },
         {
             "id":19,            
             "type":2,
-            "region":"오산시"            
+            "text":"오산시",
+            "region":"오산"
         },
         {
             "id":20,            
             "type":2,
-            "region":"용인시"            
+            "text":"용인시",
+            "region":"용인"
         },
         {
             "id":21,            
             "type":2,
-            "region":"의왕시"            
+            "text":"의왕시",
+            "region":"의왕"
         },
         {
             "id":22,            
             "type":2,
-            "region":"의정부시"            
+            "text":"의정부시",
+            "region":"의정부"
         },
         {
             "id":23,            
             "type":2,
-            "region":"이천시"            
+            "text":"이천시",
+            "region":"이천"
         },
         {
             "id":24,            
             "type":2,
-            "region":"파주시"            
+            "text":"파주시",
+            "region":"파주"
         },
         {
             "id":25,            
             "type":2,
-            "region":"평택시"            
+            "text":"평택시",
+            "region":"평택"
         },
         {
             "id":26,            
             "type":2,
-            "region":"포천시"            
+            "text":"포천시",
+            "region":"포천"
         },
         {
             "id":27,            
             "type":2,
-            "region":"하남시" 
+            "text":"하남시",
+            "region":"하남"
         },
         {
             "id":28,            
             "type":2,
-            "region":"화성시"            
+            "text":"화성시",
+            "region":"화성"
         }
     ]
 }

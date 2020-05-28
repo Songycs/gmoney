@@ -13,7 +13,7 @@ class AppBarItem extends React.Component {
   render() {
     const { item, classExt} = this.props;
     let mobile=this.props.store.util.getMobileClassName();
-    var selected=this.props.store.search.regionFlag?'selected':'';
+    var selected=this.props.store.category.regionFlag?'selected':'';
     switch(item.type){
       case "LOGO":
         return (

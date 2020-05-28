@@ -10,17 +10,22 @@ import {RegionItem} from 'components'
 class Region extends Component {
     constructor(props){
         super(props);
-        this.state = {
-        }
+        this.state = {            
+        }        
     }
-    onClickOpen=(e)=>{
-        this.props.store.search.SetRegionFlag(!this.props.store.search.regionFlag);
-    }
-    handleClickRegion=(e,item)=>{
+    componentDidMount(){
 
     }
+    onClickOpen=(e)=>{        
+        this.props.store.category.regionFlag=!this.props.store.category.regionFlag;        
+    }
+    handleClickRegion=(e,item)=>{
+        //TODO 현위치화폐 버튼 클릭 시 동작
+        this.props.store.category.regionFlag=!this.props.store.category.regionFlag;
+        this.props.store.category.region=item;
+    }
     render() {
-        var regionButton=this.props.store.search.GetRegionList().map((item,index)=>{
+        var regionButton=this.props.store.category.GetRegionList().map((item,index)=>{
             return <RegionItem    
                         key={index}
                         item={item}
@@ -29,16 +34,15 @@ class Region extends Component {
                                 this.handleClickRegion(e,item)
                             }}/>
         })
-        var btnOpen={type:1}
+        var btnOpen={type:1, text:this.props.store.category.region.text};        
         let mobile=this.props.store.util.getMobileClassName();
-        var selected=this.props.store.search.regionFlag?'selected':'';
+        var selected=this.props.store.category.regionFlag?'selected':'';
         return(
             <Container fluid className={`region-container ${mobile} ${selected}`}>
-                <RegionItem item={btnOpen} onClick={this.onClickOpen}/>
-                {this.props.store.search.regionFlag&&
-                <Row className={`region-list ${mobile}`}>
+                <RegionItem item={btnOpen} onClick={this.onClickOpen}/>                
+                <Row className={`region-list ${mobile} ${selected}`}>
                     {regionButton}
-                </Row>}
+                </Row>
             </Container>
         )
     }

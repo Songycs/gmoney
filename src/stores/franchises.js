@@ -1,8 +1,12 @@
 import { observable, action, computed,toJS } from 'mobx'
+import { observer, inject } from 'mobx-react';
 import axios from 'axios';
+import category from './category'
+import map from './map'
 
 
 const franchiseAPI = "https://283e27mdvd.execute-api.ap-northeast-2.amazonaws.com/0505/search?search_word=" 
+
 
 class Franchises {
   @observable franchiseList;
@@ -26,8 +30,7 @@ class Franchises {
         // .catch(function(error) {
         //   console.log('What happened? ' + error.response);
         // });
-  }  
-
+  }
   @action
   GetList = () => {
     return toJS(this.franchiseList);

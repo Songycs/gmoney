@@ -12,7 +12,7 @@ class SearchListItem extends Component {
     render() {
         const { item, classExt, classExtForImg, classExtForTitle, classExtForText  } = this.props;        
         let mobile=this.props.store.util.getMobileClassName();
-        var selected=this.props.store.search.searchListFlag?'selected':'';
+        var selected=this.props.store.category.searchListFlag?'selected':'';
         switch(item.type){            
             case 1://HeaderButton
                 return(

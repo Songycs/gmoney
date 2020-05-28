@@ -1,5 +1,6 @@
 import React from '../../../node_modules/react';
 import { observer, inject } from 'mobx-react';
+import {Category} from 'components'
 
 @inject("store")
 @observer
@@ -7,7 +8,23 @@ class CategoryItem extends React.Component {
     constructor(props){
         super(props);        
     }
-  render() {
+    inputKeyDown=(e)=>{
+        const val = e.target.value;
+        if (e.key === 'Enter' && val) {
+            this.props.store.category.searchKeyword=val;
+        }
+        else if (e.key === 'Backspace' && !val) {
+            this.removeTag(this.props.store.category.filterList.length - 1);
+            if (this.props.store.category.filterList.length==0)
+                this.props.store.category.SetCategoryList(this.props.store.category.GetSubCategoryById(0));            
+        }
+    }
+    removeTag = (i) => {
+        const newTags = [ ...this.props.store.category.filterList ];
+        newTags.splice(i, 1);
+        this.props.store.category.filterList= newTags;
+    }
+    render() {
     const { item, classExt} = this.props;
     let searchPlaceholder="장소, 주소 입력"
     let mobile=this.props.store.util.getMobileClassName();
@@ -28,15 +45,22 @@ class CategoryItem extends React.Component {
             )
         case 4://검색창
             return(
-                <div className={`category-input-container ${mobile}`}>
-                    <input type="text" className={`category-input-search ${mobile}`} id="search" placeholder={searchPlaceholder} required="" />
-                    <img className={`category-input-search-icon ${mobile}`} src="./images/search-24px.svg"/>
+                <div className={`category-input-container ${mobile}`}>       
+                    <div className={'tag-wrapper'}>
+                        {this.props.store.category.filterList.map((tag, i) => (
+                            <div className={'tag'} key={tag}>
+                                {tag}
+                            </div>
+                        ))}
+                    </div>   
+                    <input type="text" className={`search ${mobile}`} onKeyDown={this.inputKeyDown} ref={c => { this.tagInput = c; }} id="search" placeholder={searchPlaceholder} required="" />
+                    <img className={`icon ${mobile}`} src="./images/search-24px.svg"/>
                 </div>
             )
         default:
             break;
+        }
     }
-  }
 }
 
 export default CategoryItem;

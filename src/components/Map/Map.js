@@ -63,12 +63,16 @@ class Map extends Component {
         this.FirstLoad();
     }//componentDidMount
 
-    render() {        
+    render() {  
+        var mapButton={type:1}      
+        var locButton={type:2}      
         return(
             <Container fluid className='map-container'>
                 <Row className={`map`} id='map'/>
                 <Category/>
-                <SearchList/>        
+                <SearchList/>
+                <MapItem item={mapButton}/>
+                <MapItem item={locButton}/>
             </Container>
         )
     }
