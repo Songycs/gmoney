@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import { observer, inject } from 'mobx-react';
 import './Bottom.scss';
 
@@ -12,7 +12,7 @@ class Bottom extends Component {
         }
     }
     render() {
-        let mobile=this.props.store.util.getMobileClassName();
+        let mobile=this.props.store.getMobileClassName();
         return(
             <Container fluid className={`bottom-container ${mobile}`}>
                 <Row className='bottom-row'>

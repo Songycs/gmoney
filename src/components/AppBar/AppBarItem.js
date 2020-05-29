@@ -11,9 +11,9 @@ class AppBarItem extends React.Component {
     this.props.store.category.searchKeyword=e.target.value;
   }
   render() {
-    const { item, classExt} = this.props;
-    let mobile=this.props.store.util.getMobileClassName();
-    var selected=this.props.store.category.regionFlag?'selected':'';
+    const { item} = this.props;
+    let mobile=this.props.store.getMobileClassName();
+    var selected=this.props.store.regionFlag?'selected':'';
     switch(item.type){
       case "LOGO":
         return (
@@ -26,7 +26,7 @@ class AppBarItem extends React.Component {
                 <img src={item.iconCurrency} className={`icon`} alt="icon" />
                 <span className={`text ${mobile}`}>지역화폐를 선택해주세요</span>
               </div>
-              <img src={item.iconDropDown}className={`dropdown ${mobile}`}/>
+              <img alt={'dropdown'} src={item.iconDropDown}className={`dropdown ${mobile}`}/>
             </div>
         );
       default:

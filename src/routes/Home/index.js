@@ -12,10 +12,7 @@ import './home.scss'
 
 @inject('store')
 @observer
-class Home extends Component {  
-  constructor(props){
-    super(props)
-  } 
+class Home extends Component {    
   render() {
     return (
         <Container fluid className={'home'}>

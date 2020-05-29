@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import { observer, inject } from 'mobx-react';
-import {observable,toJS} from 'mobx'
 import './SearchList.scss'
 import {SearchListItem} from 'components'
 
@@ -14,26 +13,23 @@ class SearchList extends Component {
         }
     }
     onClickOpen=(e)=>{
-        this.props.store.category.searchListFlag=!this.props.store.category.searchListFlag;
+        this.props.store.searchListFlag=!this.props.store.searchListFlag;        
     }
     handleClickItem=(e)=>{
 
     }
-    render() {
-        var searchList=this.props.store.franchises.franchiseList.length==0?<div/>:toJS(this.props.store.franchises.franchiseList).map((item)=>{item.type=2;return <SearchListItem item={item} onClick={this.handleClickItem}/>});        
+    render() {        
         var btnOpen={type:1}
-        let mobile=this.props.store.util.getMobileClassName();
-        var selected=this.props.store.category.searchListFlag?'selected':'';
+        let mobile=this.props.store.getMobileClassName();
+        var selected=this.props.store.searchListFlag?'selected':'';        
         return(
             <Container fluid className={`searchlist-container ${mobile} ${selected}`}>
-                <SearchListItem item={btnOpen} onClick={this.onClickOpen} />
-                {this.props.store.category.searchListFlag&&
-                    <Row className='searchlist-result'>
-                        <Col className='wrapper'>
-                            {searchList}
-                        </Col>
-                    </Row>
-                }
+                <SearchListItem item={btnOpen} onClick={this.onClickOpen} />                    
+                    <Row className={`searchlist-result ${selected}`}>
+                        {this.props.store.franchiseList.map((item)=>{
+                            item.type=2;
+                            return <SearchListItem item={item} onClick={(e)=>{this.handleClickItem(e)}}/>})}
+                    </Row>                    
             </Container>
         )
     }

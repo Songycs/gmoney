@@ -15,7 +15,7 @@ $white-color:#fff;
         right:240px;
         top:24px;
         background: $white-color;        
-        z-index: 2;
+        z-index: 1;
         box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
         &.mobile{
             right:15px;
@@ -62,7 +62,7 @@ $white-color:#fff;
         top:152px;
         width:52px;
         height:52px;
-        z-index: 2;
+        z-index: 1;
         background: $white-color;
         &.mobile{
             right:15px;

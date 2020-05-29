@@ -1,17 +1,13 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
-import {toJS} from 'mobx';
 
 @inject("store")
 @observer
-class RegionItem extends React.Component {
-  constructor(props){
-    super(props);    
-  }
+class RegionItem extends React.Component {  
   render() {
     const { item, classExt} = this.props;
-    let mobile=this.props.store.util.getMobileClassName();
-    var selected=this.props.store.category.regionFlag?'selected':'';    
+    let mobile=this.props.store.getMobileClassName();
+    var selected=this.props.store.regionFlag?'selected':'';    
     switch (item.type){
       case 1://openbutton
         return (
@@ -20,7 +16,7 @@ class RegionItem extends React.Component {
                 <img src={'./images/base-money.svg'} className={`icon`} alt="icon" />
                 <span className={`text ${mobile}`}>{item.text}</span>
               </div>
-              <img src={'./images/path-3.svg'}className={`dropdown ${mobile}`}/>
+              <img alt={'Dropdown'} src={'./images/path-3.svg'}className={`dropdown ${mobile}`}/>
             </div>
         );
       case 2://selectbutton
@@ -29,8 +25,9 @@ class RegionItem extends React.Component {
             {item.text}
           </div>
         )
-    }
-    return (<div/>);
+      default:
+        return (<div/>);
+    }    
   }
 }
 
