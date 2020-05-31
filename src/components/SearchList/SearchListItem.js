@@ -23,8 +23,9 @@ class SearchListItem extends Component {
                         <div className='body'>
                             <div className='category'>{item.cate}</div>
                             <div className='name'>{item.name}</div>
+                            <div className='distance'>{this.props.store.GetDistance(item.lat,item.long)}</div>
                             <div className='address'>{item.add}</div>
-                            <div className='num'>{item.num}</div>
+                            <div className='phone'>{item.phone}</div>
                         </div>
                         <img alt={'Path'} className='path' src='./images/finding-away-b.svg'></img>
                         <img alt={'Share'} className='share' src='./images/share.svg'></img>

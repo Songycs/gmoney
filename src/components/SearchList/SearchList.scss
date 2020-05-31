@@ -116,7 +116,13 @@ $padding-size:18px;
                     color: $info-color;
                     margin-bottom: 10px;
                 }
-                .num{
+                .phone{
+                    font-family: NanumGothic;
+                    font-size: 16px;                    
+                    letter-spacing: -0.57px;
+                    color: $info-color;
+                }
+                .distance{
                     font-family: NanumGothic;
                     font-size: 16px;                    
                     letter-spacing: -0.57px;

@@ -5,7 +5,7 @@ import {isMobile} from 'components'
 
 const { kakao } = window;
 const franchiseAPI = "https://283e27mdvd.execute-api.ap-northeast-2.amazonaws.com/0505/search?search_word=" 
-
+const boundAPI = "https://283e27mdvd.execute-api.ap-northeast-2.amazonaws.com/0505/bound?long="
 class Stores {
   @observable filterList;
   @observable categoryFlag;
@@ -35,7 +35,7 @@ class Stores {
     this.searchListFlag = false;
     this.mobileFlag = isMobile.Android() || isMobile.iOS();
     this.mapObject = null;
-    this.currentLocation = '';    
+    this.currentLocation = new kakao.maps.LatLng(37.732876,127.415004);    
     this.currentAddress = '';
     this.currentMarkers = [];    
   }
@@ -138,9 +138,11 @@ class Stores {
   @action
   GetRegionByName = (name) => {
     let list = data["region_list"];
-    return list.find(element=>element.text===name);
+    if(list.find(element=>element.text===name))
+        return list.find(element=>element.text===name);
+    else
+      return list.find(element=>element.text==="비서비스 지역");
   }
-
   @action
   getMobileFlag = () => {
     return this.mobileFlag;
@@ -152,21 +154,16 @@ class Stores {
     else return "";
   }
   @action
+  GetFranchisesBound = async(long, lat, distance) =>{
+    let response = await axios.get(`${boundAPI}${long}&lat=${lat}&distance=${distance}`);
+    this.franchiseList = JSON.parse((response).data.body).body;
+    return toJS(this.franchiseList);
+  }
+  @action
   GetFranchises = async (search_word,region,cate1,cate2)=> {
     let response = await axios.get(`${franchiseAPI}${search_word}&region=${region}&cate1=${cate1}&cate2=${cate2}`);
     this.franchiseList = JSON.parse((response).data.body).body;
     return toJS(this.franchiseList);
-        // await axios
-        // .get(`https://283e27mdvd.execute-api.ap-northeast-2.amazonaws.com/0505/search?search_word=${search_word}&region=${region}&category=${category}`)
-        // .then(function(response) {
-        //     //json string to json object
-        //     let result = JSON.parse(response.data.body).body;
-        //     console.log(result);
-        //     //return or setState depending on functions, plz check console.log
-        // })
-        // .catch(function(error) {
-        //   console.log('What happened? ' + error.response);
-        // });
   }
 
   @action
@@ -199,7 +196,8 @@ class Stores {
   }
   @action
   SetCurrentLocation = async () => {
-    var locPosition = new kakao.maps.LatLng(37.56812473178144, 126.9218518787957); //default or fail
+    //var locPosition = new kakao.maps.LatLng(37.56812473178144, 126.9218518787957); //default or fail
+    var locPosition = new kakao.maps.LatLng(37.732876,127.415004);
     var geocoder = new kakao.maps.services.Geocoder();
     var callback = (result,status) =>{
         if(status === kakao.maps.services.Status.OK){
@@ -245,7 +243,10 @@ class Stores {
     var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(centerLat)) * Math.cos(deg2rad(lat)) * Math.sin(dLon/2) * Math.sin(dLon/2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     var d = 6371 * c; // Distance in km
-    return Math.round(d*1000);
+    if(d >= 1)
+      return d.toFixed(2)+"KM";
+    else 
+      return Math.round(d*1000)+"M";
     function deg2rad(deg) {
         return deg * (Math.PI/180)
     }

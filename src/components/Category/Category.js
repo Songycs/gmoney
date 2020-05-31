@@ -51,6 +51,8 @@ class Category extends Component {
 
     onClickOpen=(e)=>{        
         this.props.store.SetCategoryFlag(!this.props.store.categoryFlag);
+        if(this.props.store.searchListFlag===true)
+            this.props.store.searchListFlag=!this.props.store.searchListFlag;        
     }
 
     render() {              

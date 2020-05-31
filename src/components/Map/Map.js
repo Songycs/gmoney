@@ -20,6 +20,7 @@ class Map extends Component {
         var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
         var markerList = this.props.store.franchiseList;
         await this.props.store.SetMarkers(markerList,imageSrc);
+        //this.props.store.GetFranchisesBound(127.415004, 37.732876, 10000);
     } 
 
     async CreateMap(){

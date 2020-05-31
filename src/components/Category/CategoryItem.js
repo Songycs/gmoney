@@ -15,7 +15,7 @@ class CategoryItem extends React.Component {
             if (this.props.store.filterList.length===0)
                 this.props.store.SetCategoryList(this.props.store.GetSubCategoryById(0));
             this.props.store.RefreshResultList();
-        }        
+        } 
     }
     removeTag = (i) => {
         const newTags = [ ...this.props.store.filterList ];
