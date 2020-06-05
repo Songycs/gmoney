@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import { observer, inject } from 'mobx-react';
 import './SearchList.scss'
+import {Link} from 'react-router-dom';
 
 @inject("store")
 @observer
-class SearchListItem extends Component {    
+class SearchListItem extends Component {  
     render() {
         const { item, classExt} = this.props;        
         let mobile=this.props.store.getMobileClassName();
@@ -21,14 +22,15 @@ class SearchListItem extends Component {
                 return(
                     <div onClick={item.disable ? null : this.props.onClick} className={`searchlist-result-container ${classExt}`}>
                         <div className='body'>
-                            <div className='category'>{item.cate}</div>
+                            <div className='category'>{item.cate2}</div>
                             <div className='name'>{item.name}</div>
                             <div className='distance'>{this.props.store.GetDistance(item.lat,item.long)}</div>
                             <div className='address'>{item.add}</div>
                             <div className='phone'>{item.phone}</div>
                         </div>
                         <img alt={'Path'} className='path' src='./images/finding-away-b.svg'></img>
-                        <img alt={'Share'} className='share' src='./images/share.svg'></img>
+                        <a href={`https://map.kakao.com/link/to/${item.name}/${item.lat},${item.long}`}>
+                            <img alt={'Share'} className='share' src='./images/share.svg'></img></a>
                     </div>
                 )
             default:

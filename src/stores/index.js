@@ -1,5 +1,5 @@
 import data from './Data.json'
-import { observable, action, toJS } from 'mobx'
+import { observable, action, toJS} from 'mobx'
 import axios from 'axios';
 import {isMobile} from 'components'
 
@@ -7,6 +7,7 @@ const { kakao } = window;
 const franchiseAPI = "https://283e27mdvd.execute-api.ap-northeast-2.amazonaws.com/0505/search?search_word=" 
 const boundAPI = "https://283e27mdvd.execute-api.ap-northeast-2.amazonaws.com/0505/bound?long="
 class Stores {
+  @observable franchiseList;
   @observable filterList;
   @observable categoryFlag;
   @observable searchListFlag;
@@ -21,7 +22,6 @@ class Stores {
   @observable currentLocation;  
   @observable currnetAddress;
   @observable currentMarkers;
-
   constructor() {
     this.filterList = [];
     this.franchiseList = [];
@@ -38,6 +38,26 @@ class Stores {
     this.currentLocation = new kakao.maps.LatLng(37.732876,127.415004);    
     this.currentAddress = '';
     this.currentMarkers = [];    
+
+    // //FOR UPDATE AUTOMATICALLY
+    //  observe(this,(change=>{
+    //   if(change.name==='franchiseList')
+    //     {
+    //       this.franchiseJSX = [];
+    //       this.franchiseList.map((item,index)=>
+    //             {
+    //               item.type=2;
+    //               this.franchiseJSX.push((<SearchListItem item={item} onClick={(e)=>{this.handleClickItem(e)}}/>))
+    //               return null;
+    //             }
+    //             )//map
+    //       if(!this.searchListFlag)
+    //             this.searchListFlag=true;
+    //     }
+    //     }
+    // ))
+  }
+  handleClickItem=(e)=>{
   }
   @action
   AddFilter = (item) => {
@@ -160,8 +180,8 @@ class Stores {
     return toJS(this.franchiseList);
   }
   @action
-  GetFranchises = async (search_word,region,cate1,cate2)=> {
-    let response = await axios.get(`${franchiseAPI}${search_word}&region=${region}&cate1=${cate1}&cate2=${cate2}`);
+  GetFranchises = async (search_word,region,cate1,cate2,long,lat)=> {
+    let response = await axios.get(`${franchiseAPI}${search_word}&region=${region}&cate1=${cate1}&cate2=${cate2}&long=${long}&lat=${lat}`);
     this.franchiseList = JSON.parse((response).data.body).body;
     return toJS(this.franchiseList);
   }
@@ -196,8 +216,7 @@ class Stores {
   }
   @action
   SetCurrentLocation = async () => {
-    //var locPosition = new kakao.maps.LatLng(37.56812473178144, 126.9218518787957); //default or fail
-    var locPosition = new kakao.maps.LatLng(37.732876,127.415004);
+    var locPosition = new kakao.maps.LatLng(37.56812473178144, 126.9218518787957); //default or fail
     var geocoder = new kakao.maps.services.Geocoder();
     var callback = (result,status) =>{
         if(status === kakao.maps.services.Status.OK){
@@ -299,9 +318,11 @@ class Stores {
   @action
   RefreshResultList=async()=>{
     if(this.GetCurrentDepth()===2)
-      await this.GetFranchises(this.searchKeyword,this.region.region,toJS(this.filterList[0]),toJS(this.filterList[1]));
+      await this.GetFranchises(this.searchKeyword,this.region.region,toJS(this.filterList[0]),toJS(this.filterList[1]),this.currentLocation.getLng(),this.currentLocation.getLat());
     else if(this.GetCurrentDepth()===1)
-      await this.GetFranchises(this.searchKeyword,this.region.region,toJS(this.filterList[0]),'');
+      await this.GetFranchises(this.searchKeyword,this.region.region,toJS(this.filterList[0]),'',this.currentLocation.getLng(),this.currentLocation.getLat());
+    else 
+      console.log("without category");
     var imageSrc = './images/my-marker.png'; 
     var markerList = this.franchiseList;
     await this.SetMarkers(markerList,imageSrc);
