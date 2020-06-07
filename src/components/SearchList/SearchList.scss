@@ -87,9 +87,9 @@ $padding-size:18px;
             direction:ltr;
             display:flex;
             flex-flow: row;
-            height:calc(142px - calc(#{$padding-size * 2}));
+            height:calc(142px - calc($padding-size * 2));
             padding:$padding-size;
-            width:calc(100% - 2px - calc(#{$padding-size * 2}));            
+            width:calc(100% - 2px - calc($padding-size * 2));            
             .body{
                 flex-grow: 1;
                 .category{
