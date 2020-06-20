@@ -36,7 +36,7 @@ class Map extends Component {
     async CreateMap(){
         const script = document.createElement('script');
         script.async = true;
-        script.src = "https://dapi.kakao.com/v2/maps/sdk.js?appkey=da95929a40edbaa821402e4ba92c944d&autoload=false";
+        script.src = "https://dapi.kakao.com/v2/maps/sdk.js?appkey=aa6aebd14decbfd312c8c2567519b579&autoload=false";
         document.head.appendChild(script);
         script.onload = () => {
             kakao.maps.load(() => {
