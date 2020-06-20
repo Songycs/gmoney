@@ -91,15 +91,9 @@ $padding-size:18px;
             direction:ltr;
             display:flex;
             flex-flow: row;
-<<<<<<< HEAD
             min-height:106px;
             padding:$padding-size;
             width:calc(100% - 38px);            
-=======
-            height:calc(142px - calc($padding-size * 2));
-            padding:$padding-size;
-            width:calc(100% - 2px - calc($padding-size * 2));            
->>>>>>> 6926fdf0f3581be9c3dedbf8a9380a9eb2720654
             .body{
                 flex-grow: 1;
                 .category{
