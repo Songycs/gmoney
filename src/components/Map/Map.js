@@ -2,25 +2,35 @@ import React, { Component } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import {MapItem,Category,SearchList} from 'components'
 import { observer, inject } from 'mobx-react';
+import {observe} from 'mobx'
 import './Map.scss'
 const { kakao } = window;
 
 @inject("store")
 @observer
 class Map extends Component {
+
     constructor(props){
         super(props);
         this.state = {
         }
+
+    observe(this.props.store,(change=>{
+        if(change.name==='currentLocationLoad'&this.props.store.currentLocationLoad){
+                this.props.store.GetFranchisesBound(this.props.store.currentLocation.getLng(), this.props.store.currentLocation.getLat(), 1000);
+            }
+            }
+        ))
     }
+
     
+
     async FirstLoad(){
-        this.props.store.RefreshResultList();
+        //this.props.store.RefreshResultList();
         await this.CreateMap();
         var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
         var markerList = this.props.store.franchiseList;
         await this.props.store.SetMarkers(markerList,imageSrc);
-        this.props.store.GetFranchisesBound(this.props.store.currentLocation.getLng(), this.props.store.currentLocation.getLat(), 100000);
     } 
 
     async CreateMap(){

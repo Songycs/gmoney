@@ -22,6 +22,8 @@ class Stores {
   @observable currentLocation;  
   @observable currnetAddress;
   @observable currentMarkers;
+  @observable currentLocationLoad;
+
   constructor() {
     this.filterList = [];
     this.franchiseList = [];
@@ -35,9 +37,10 @@ class Stores {
     this.searchListFlag = false;
     this.mobileFlag = isMobile.Android() || isMobile.iOS();
     this.mapObject = null;
-    this.currentLocation = new kakao.maps.LatLng(37.732876,127.415004);    
+    this.currentLocation ='';    
     this.currentAddress = '';
-    this.currentMarkers = [];    
+    this.currentMarkers = [];
+    this.currentLocationLoad = false;    
 
     // //FOR UPDATE AUTOMATICALLY
     //  observe(this,(change=>{
@@ -177,6 +180,7 @@ class Stores {
   GetFranchisesBound = async(long, lat, distance) =>{
     let response = await axios.get(`${boundAPI}${long}&lat=${lat}&distance=${distance}`);
     this.franchiseList = JSON.parse((response).data.body).body;
+    console.log(JSON.parse((response).data.body).body)
     return toJS(this.franchiseList);
   }
   @action
@@ -216,11 +220,13 @@ class Stores {
   }
   @action
   SetCurrentLocation = async () => {
+    this.currentLocationLoad=false;
     var locPosition = new kakao.maps.LatLng(37.56812473178144, 126.9218518787957); //default or fail
     var geocoder = new kakao.maps.services.Geocoder();
     var callback = (result,status) =>{
         if(status === kakao.maps.services.Status.OK){
             //구 찾기 
+            this.currentLocation = new kakao.maps.LatLng(result[0].y,result[0].x);
             this.currentAddress =result[1].address_name;
             var regionText = result[1].region_2depth_name.split(' ')[0];
             this.region = this.GetRegionByName(regionText);
@@ -235,6 +241,7 @@ class Stores {
               image : markerImage // 마커 이미지 
             });
             marker.setMap(this.mapObject);
+            this.currentLocationLoad = true;
         }
     }
     if (navigator.geolocation) {
@@ -242,7 +249,7 @@ class Stores {
         function(position){                    
           var lat = position.coords.latitude, // 위도
               lon = position.coords.longitude; // 경도
-          locPosition = new kakao.maps.LatLng(lat, lon);          
+          locPosition = new kakao.maps.LatLng(lat, lon);
           searchAddrFromCoords(locPosition,callback);
         });
     }    

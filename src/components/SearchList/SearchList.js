@@ -28,8 +28,8 @@ class SearchList extends Component {
                     return null;
                   }
                   )//map
-            if(!this.props.store.searchListFlag)
-            this.props.store.searchListFlag=true;
+            // if(!this.props.store.searchListFlag)
+            // this.props.store.searchListFlag=true;
           }
           }
       ))
