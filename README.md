@@ -10,20 +10,20 @@
  ##### 현재 지역화폐가맹점 안내가 불친절하여 잘 활용하지 못하는 듯함
  - 20.02 PICK STUDIO 팀 참가 / 프로젝트 기획
  - 20.03 개발 시작
- - 20.06 데모버전 완성
- - 20.06 리드 개발자의 입대...
- - 20.07 프로젝트 중지
+ - 20.06 Demo version complete
+ - 20.06 Lead developer enrolled army
+ - 20.07 Project suspendded
 ---------------------------------------
 
 ### On developing
  - Checking location information accuracy
- - 
+ - Store Marking & Store information UI 
 ---------------------------------------
 
 ### PROCESS 
 #####  Completed Only 
-
-
+- DATA Crawlling ( 0.6 million row )
+- DATA 
 ---------------------------------------
 
 ### Built With ( STACK ) 
