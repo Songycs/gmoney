@@ -3,15 +3,18 @@
 20.03 ~ 20.06 프로젝트 진행
 현재 개발 중단 
 
+21.08 Imported from gitlab
+
 ---------------------------------------
 
 ### OUTLINE 
  ##### 코로나 사태로 지급된 경기지역화폐에서 아이디어를 얻어 시작되었으며,
- ##### 현재 지역화폐가맹점 안내가 불친절하여 잘 활용하지 못하는 듯함
+ ##### 현재 지역화폐가맹점 안내가 불친절하여 잘 활용하지 못하는 문제를 해결함에 목적을 둔 프로젝트
+ ##### UI의 편리함, 디자인의 깔끔함으로 타 서비스와 차별점을 두고자하였음 
+ 
  - 20.02 PICK STUDIO 팀 참가 / 프로젝트 기획
  - 20.03 개발 시작
  - 20.06 Demo version complete
- - 20.06 Lead developer enrolled army
  - 20.07 Project suspendded
 ---------------------------------------
 
@@ -20,10 +23,22 @@
  - Store Marking & Store information UI 
 ---------------------------------------
 
+### Planned & Designed
+ - Review
+ - Store Marking & Store information UI 
+---------------------------------------
+
 ### PROCESS 
 #####  Completed Only 
-- DATA Crawlling ( 0.6 million row )
-- DATA 
+- DATA Crawlling ( 0.6 million row, only Gyeonggi-do Province )
+- DATA Preprocessing
+- Project demo design
+- DB ( MongoDB Atlas )
+- API ( Aws api , Aws lambda)
+  - stores per distance
+  - stores ordered by distance
+  - specific category stores
+
 ---------------------------------------
 
 ### Built With ( STACK ) 
