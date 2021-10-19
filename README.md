@@ -13,24 +13,23 @@
  ##### UI의 편리함, 디자인의 깔끔함으로 타 서비스와 차별점을 두고자하였음 
  
  - 20.02 PICK STUDIO 팀 참가 / 프로젝트 기획
- - 20.03 개발 시작
+ - 20.03 Project start
  - 20.06 Demo version complete
  - 20.07 Project suspendded
 ---------------------------------------
 
-### On developing
- - Checking location information accuracy
- - Store Marking & Store information UI 
----------------------------------------
+### UI
 
-### Planned & Designed
- - Review
- - Store Marking & Store information UI 
----------------------------------------
+ -![01경기콕콕_02_대카테고리](https://user-images.githubusercontent.com/15559593/137873762-dfcf1b47-2bd8-4e12-8b9b-bfb0d879a854.jpg)
+ - ![01경기콕콕_05_리스트선택](https://user-images.githubusercontent.com/15559593/137873845-9dbef634-fd23-4083-a0f4-0c675d502365.jpg)
+ - ![01경기콕콕_04_결과값](https://user-images.githubusercontent.com/15559593/137874290-56efcdf4-7198-4590-9cf0-44144c44d2c0.jpg)
+ -![01경기콕콕_01최초진입_화폐설정01*Tablet](https://user-images.githubusercontent.com/15559593/137873903-f710d998-9503-41c6-a3c1-dea5f9fbd6cb.jpg)
+
 
 ### PROCESS 
+
 #####  Completed Only 
-- DATA Crawlling ( 0.6 million row, only Gyeonggi-do Province )
+- DATA Crawling ( 0.6 million row, only Gyeonggi-do Province )
 - DATA Preprocessing
 - Project demo design
 - DB ( MongoDB Atlas )
@@ -38,7 +37,25 @@
   - stores per distance
   - stores ordered by distance
   - specific category stores
+  - keyword search
+- UI
+  - store list (basic info)
+  - search
+  - category
+  - currency setting
+  - my location
+  - distance from loocation
+---------------------------------------
 
+### On developing
+ - Checking location information accuracy (pc, mobile each)
+ - Store Marking & Store information UI 
+---------------------------------------
+
+### Planned & Designed
+ - Store Review
+ - Store Marking & Store information UI
+ - deploy(aws ec2)
 ---------------------------------------
 
 ### Built With ( STACK ) 
@@ -71,7 +88,5 @@ Deployed by AWS EC2
 ---------------------------------------
 
 ## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](https://gist.github.com/PurpleBooth/LICENSE.md) file for details / 이 프로젝트는 MIT 라이센스로 라이센스가 부여되어 있습니다. 자세한 내용은 LICENSE.md 파일을 참고하세요.
 
 ---------------------------------------
