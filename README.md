@@ -18,17 +18,14 @@
  - 20.07 Project suspendded
 ---------------------------------------
 
-### UI
+### UI ( pc / mobile )
 
- -![01경기콕콕_02_대카테고리](https://user-images.githubusercontent.com/15559593/137873762-dfcf1b47-2bd8-4e12-8b9b-bfb0d879a854.jpg)
- - ![01경기콕콕_05_리스트선택](https://user-images.githubusercontent.com/15559593/137873845-9dbef634-fd23-4083-a0f4-0c675d502365.jpg)
- - ![01경기콕콕_04_결과값](https://user-images.githubusercontent.com/15559593/137874290-56efcdf4-7198-4590-9cf0-44144c44d2c0.jpg)
- -![01경기콕콕_01최초진입_화폐설정01*Tablet](https://user-images.githubusercontent.com/15559593/137873903-f710d998-9503-41c6-a3c1-dea5f9fbd6cb.jpg)
+ ![01경기콕콕_02_대카테고리](https://user-images.githubusercontent.com/15559593/137873762-dfcf1b47-2bd8-4e12-8b9b-bfb0d879a854.jpg)
+ ![01경기콕콕_04_결과값](https://user-images.githubusercontent.com/15559593/137874290-56efcdf4-7198-4590-9cf0-44144c44d2c0.jpg)
+ ![01경기콕콕_01최초진입_화폐설정01*Tablet](https://user-images.githubusercontent.com/15559593/137873903-f710d998-9503-41c6-a3c1-dea5f9fbd6cb.jpg)
 
 
-### PROCESS 
-
-#####  Completed Only 
+### PROCESS(Completed Only) 
 - DATA Crawling ( 0.6 million row, only Gyeonggi-do Province )
 - DATA Preprocessing
 - Project demo design
@@ -80,9 +77,11 @@ Deployed by AWS EC2
 ---------------------------------------
 
 ## Built With & ROLE
+
 * PICK STUDIO 소속
-김동연 - 기획, 법률자문, 
+김동연 - 기획, 법률자문
 김선아 - UI 디자인, 로고디자인
+윤민희 - mobile ui, store info, made by 디자인
 송영훈 - DB(데이터수집 및 가공, 데이터베이스 구축), 서버(API제작,배포), 프론트 디자인 및 개발(REACT)  
 이무창 - 프론트 디자인 및 개발 
 ---------------------------------------
